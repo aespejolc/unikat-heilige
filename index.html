@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unikat-Profil: Dein Heiligenbild</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Source+Sans+Pro:wght@400;600&display=swap');
+
         :root {
-            --bg-color: #fdfbf7;
+            --bg-color: #fdfbf7; /* Parchment/Elfenbein */
             --text-color: #2c3e50;
-            --primary-color: #1a365d;
-            --accent-color: #b8860b;
+            --primary-color: #0f254b; /* Sakrales Dunkelblau */
+            --accent-color: #c5a059; /* Edles Gold */
             --border-color: #e2e8f0;
             --card-bg: #ffffff;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Source Sans Pro', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
@@ -24,118 +26,161 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             background: var(--card-bg);
-            padding: 30px;
+            padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--accent-color);
+            box-shadow: 0 10px 25px rgba(15, 37, 75, 0.08);
+            border-top: 6px solid var(--accent-color);
         }
 
         h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
             color: var(--primary-color);
             margin-bottom: 15px;
         }
 
         h1 {
             text-align: center;
-            font-size: 2em;
+            font-size: 2.4em;
             border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 1.6em;
+            margin-top: 0;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
         }
 
         .quote {
             text-align: center;
+            font-family: 'Playfair Display', serif;
             font-style: italic;
-            color: #666;
-            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 40px;
         }
 
         .section {
-            margin-bottom: 40px;
-            padding: 20px;
-            background: #f8fafc;
+            margin-bottom: 45px;
+            padding: 30px;
+            background: #f8fafb;
             border-radius: 8px;
             border: 1px solid var(--border-color);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .question {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
-        label {
+        label.question-title {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 1.1em;
+            color: var(--primary-color);
         }
 
         .radio-group, .checkbox-group {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 8px;
         }
 
         .radio-item, .checkbox-item {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            padding: 8px;
+            gap: 12px;
+            padding: 10px 15px;
             background: white;
             border: 1px solid var(--border-color);
             border-radius: 6px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            font-size: 15px;
         }
 
         .radio-item:hover, .checkbox-item:hover {
-            background: #f1f5f9;
+            background: #f0f4f8;
+            border-color: var(--primary-color);
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            margin-top: 4px;
+            transform: scale(1.1);
+            accent-color: var(--accent-color);
         }
 
         input[type="text"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            font-size: 16px;
+            font-size: 15px;
+            font-family: 'Source Sans Pro', sans-serif;
             box-sizing: border-box;
-            margin-top: 5px;
+            margin-top: 8px;
+            background-color: #fff;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.2);
+        }
+
+        .other-input {
+            display: none;
+            margin-top: 10px;
+            margin-left: 30px;
+            width: calc(100% - 30px) !important;
+            border-color: var(--accent-color) !important;
         }
 
         .color-meaning {
             font-size: 0.85em;
             color: #64748b;
             display: block;
-            margin-left: 25px;
+            margin-top: 2px;
         }
 
         .gender-buttons {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             margin-bottom: 10px;
         }
 
         .gender-btn {
             flex: 1;
-            padding: 10px;
+            padding: 12px;
             text-align: center;
             background: white;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary-color);
+            transition: all 0.2s;
         }
 
         .gender-btn.active {
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
+            box-shadow: 0 4px 6px rgba(15, 37, 75, 0.2);
         }
 
         .image-preview-container {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 20px;
             padding: 15px;
             border: 1px dashed var(--accent-color);
             border-radius: 8px;
@@ -153,73 +198,90 @@
             background-color: var(--accent-color);
             color: white;
             border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 6px;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
             text-align: center;
             text-decoration: none;
-            transition: background 0.3s;
+            transition: all 0.3s;
             width: 100%;
             box-sizing: border-box;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(197, 160, 89, 0.3);
+            font-family: 'Source Sans Pro', sans-serif;
         }
 
         .btn:hover {
-            background-color: #9a7009;
+            background-color: #ad8c4e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(197, 160, 89, 0.4);
         }
 
         .btn-secondary {
             background-color: var(--primary-color);
+            box-shadow: 0 4px 6px rgba(15, 37, 75, 0.3);
         }
         
         .btn-secondary:hover {
-            background-color: #122643;
+            background-color: #17325b;
+            box-shadow: 0 6px 12px rgba(15, 37, 75, 0.4);
         }
 
         .btn-danger {
-            background-color: #ef4444;
-            margin-bottom: 20px;
+            background-color: #f8fafb;
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            box-shadow: none;
+            font-size: 14px;
+            padding: 8px 16px;
+            width: auto;
+            margin-bottom: 30px;
+            float: right;
         }
 
         .btn-danger:hover {
-            background-color: #dc2626;
+            background-color: #fef2f2;
+            transform: none;
         }
 
         .btn-outline {
             background-color: white;
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
+            box-shadow: none;
         }
 
         .btn-outline:hover {
-            background-color: #f1f5f9;
+            background-color: #f0f4f8;
+            transform: translateY(-2px);
         }
 
         #results {
             display: none;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 3px solid var(--accent-color);
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 4px solid var(--accent-color);
         }
 
         .prompt-box {
-            background: #1e293b;
-            color: #f8fafc;
-            padding: 20px;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 25px;
             border-radius: 8px;
             font-family: monospace;
             white-space: pre-wrap;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6;
+            border-left: 4px solid var(--accent-color);
         }
 
         .flex-buttons {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
         
         .flex-buttons .btn {
@@ -229,366 +291,11 @@
 
         .hint {
             font-size: 0.9em;
-            color: #666;
-            margin-top: 5px;
-            margin-bottom: 15px;
+            color: #718096;
+            margin-top: -8px;
+            margin-bottom: 12px;
             display: block;
+            font-style: italic;
         }
 
-        @media (max-width: 600px) {
-            .flex-buttons {
-                flex-direction: column;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>Der einzigartige Heilige, den Gott in dir sieht</h1>
-    <p class="quote">„Gott hat uns alle als Unikate geschaffen, doch viele sterben als Fotokopien."<br>— Sel. Carlo Acutis</p>
-
-    <button type="button" class="btn btn-danger" onclick="resetForm()">Alle Eingaben löschen & Neu starten</button>
-
-    <form id="profileForm">
-        
-        <!-- TEIL A -->
-        <div class="section">
-            <h2>TEIL A: GEISTLICHE AUSRICHTUNG & CHARISMA</h2>
-            
-            <div class="question">
-                <label>1. Grundhaltung deines Dienstes:</label>
-                <input type="text" id="q1" placeholder="z. B. Aktiv, Kontemplativ, Lehrend, Pionier...">
-            </div>
-
-            <div class="question">
-                <label>2. Deine geistliche Heimat (Spiritualität):</label>
-                <input type="text" id="q2" placeholder="z. B. Regnum Christi, Franziskanisch, Ignatianisch...">
-            </div>
-
-            <div class="question">
-                <label>3. Dein Lebensstand in der Welt:</label>
-                <input type="text" id="q3" placeholder="z. B. Laie, Familie/Ehe, Priester/Ordensstand...">
-            </div>
-
-            <div class="question">
-                <label>4. Wundertaten & charismatische Zeichen:</label>
-                <input type="text" id="q4" placeholder="z. B. Heilung, Friedensstiftung, prophetisches Wort...">
-            </div>
-
-            <div class="question">
-                <label>5. Deine größte persönliche Schwäche (die verwandelt wird):</label>
-                <input type="text" id="q5" placeholder="z. B. Ungeduld, Stolz, Menschenfurcht...">
-            </div>
-
-            <div class="question">
-                <label>6. Wähle ZWEI Haupttugenden:</label>
-                <span class="hint">Bitte kreuze genau 2 an.</span>
-                <div class="checkbox-group" id="q6-group">
-                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Heroischer Mut / Tapferkeit"> Heroischer Mut / Tapferkeit</label>
-                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Sanftmütige Barmherzigkeit"> Sanftmütige Barmherzigkeit</label>
-                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Lautere Reinheit des Herzens"> Lautere Reinheit des Herzens</label>
-                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Brennender apostolischer Eifer"> Brennender apostolischer Eifer</label>
-                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Demut & Freude im Verborgenen"> Demut & Freude im Verborgenen</label>
-                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Unerschütterliches Gottvertrauen"> Unerschütterliches Gottvertrauen</label>
-                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Kluge Unterscheidungsgabe"> Kluge Unterscheidungsgabe</label>
-                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Geistliche Freude & Humor"> Geistliche Freude & Humor</label>
-                </div>
-            </div>
-        </div>
-
-        <!-- TEIL B -->
-        <div class="section">
-            <h2>TEIL B: ERSCHEINUNG & FARBEN</h2>
-            
-            <div class="question">
-                <label>7. Physische Gestalt:</label>
-                
-                <div class="gender-buttons">
-                    <div class="gender-btn" onclick="selectGender('Männlich', this)">Männlich</div>
-                    <div class="gender-btn" onclick="selectGender('Weiblich', this)">Weiblich</div>
-                    <div class="gender-btn" onclick="selectGender('Anderes', this)">Anderes</div>
-                </div>
-                <input type="hidden" id="q7-gender" value="">
-                <input type="text" id="q7-gender-other" placeholder="Geschlecht spezifizieren..." style="display:none; margin-bottom: 10px;">
-
-                <input type="text" id="q7-pheno" placeholder="Phänotyp (z. B. mediterran, nordisch, Latina...)">
-                <input type="text" id="q7-age" placeholder="Altersanmutung (z. B. ca. 30 Jahre, weise...)">
-                <input type="text" id="q7-build" placeholder="Statur / Größe (z. B. groß, zierlich...)">
-                <input type="text" id="q7-features" placeholder="Haare, Augen & Merkmale (z. B. Vollbart, Brille...)">
-            </div>
-
-            <div class="question">
-                <label>8a. Art der Kleidung:</label>
-                <input type="text" id="q8a" placeholder="z. B. Liturgisches Gewand, Moderner Anzug, Outdoor...">
-            </div>
-
-            <div class="question">
-                <label>8b. Farben des Gewandes (max. 2):</label>
-                <div class="checkbox-group" id="q8b-group">
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="q8b" value="Dunkelblau"> 
-                        <div>Dunkelblau <span class="color-meaning">Göttliche Wahrheit, Treue, Himmel</span></div>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="q8b" value="Rubinrot">
-                        <div>Rubinrot <span class="color-meaning">Brennende Liebe, Opferbereitschaft, Heiliger Geist</span></div>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="q8b" value="Smaragdgrün">
-                        <div>Smaragdgrün <span class="color-meaning">Hoffnung, neues Leben, Wachstum</span></div>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="q8b" value="Reinweiß">
-                        <div>Reinweiß <span class="color-meaning">Reinheit, Auferstehungsfreude, Licht</span></div>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="q8b" value="Erdbraun / Ocker">
-                        <div>Erdbraun <span class="color-meaning">Demut, Schlichtheit, Bodenständigkeit</span></div>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="q8b" value="Königspurpur / Violett">
-                        <div>Violett <span class="color-meaning">Buße, königliche Würde Christi, Reue</span></div>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="q8b" value="Gold / Safrangelb">
-                        <div>Gold <span class="color-meaning">Glanz der Gnade, göttliche Weisheit</span></div>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="q8b" value="Schwarz">
-                        <div>Schwarz <span class="color-meaning">Weltabgewandtheit, Ernsthaftigkeit, Radikalität</span></div>
-                    </label>
-                </div>
-            </div>
-
-            <div class="question">
-                <label>9. Heiligenschein (Nimbus):</label>
-                <input type="text" id="q9" placeholder="z. B. Goldener Rundnimbus, zarter Lichtkranz...">
-            </div>
-        </div>
-
-        <!-- TEIL C -->
-        <div class="section">
-            <h2>TEIL C: ATTRIBUTE & SYMBOLIK</h2>
-            
-            <div class="question">
-                <label>10. Rechte Hand (Handlung, Gabe, Wirken):</label>
-                <input type="text" id="q10" placeholder="z. B. Hält eine Monstranz, Smartphone, Schwert...">
-            </div>
-
-            <div class="question">
-                <label>11. Linke Hand (Herzseite, Halt, Schutz):</label>
-                <input type="text" id="q11" placeholder="z. B. Hält einen Rosenkranz, Kruzifix, Lilien...">
-            </div>
-
-            <div class="question">
-                <label>12. Brust-Emblem / Spezieller Schmuck:</label>
-                <input type="text" id="q12" placeholder="z. B. Beichtstola, Flammendes Herz, Kompass...">
-            </div>
-
-            <div class="question">
-                <label>13. Zu Füßen der Gestalt (Fundament / Hobbys):</label>
-                <input type="text" id="q13" placeholder="z. B. Kisten mit Brettspielen, Kochtopf, Kamera...">
-            </div>
-
-            <div class="question">
-                <label>14. Hintergrund (Landschaft / Kulisse):</label>
-                <input type="text" id="q14" placeholder="z. B. Boot mit Fischern am Strand, Großstadt...">
-            </div>
-
-            <div class="question">
-                <label>15. Dein Leitwort / Motto (Bibelvers etc.):</label>
-                <input type="text" id="q15" placeholder="z. B. Duc in Altum!">
-            </div>
-
-            <div class="question">
-                <label>16. Bevorzugter Malstil für das Kunstwerk:</label>
-                <div class="radio-group">
-                    <label class="radio-item"><input type="radio" name="q16" value="Italienische Renaissance (z. B. Raffael)"> Italienische Renaissance (z. B. Raffael) - Harmonisch, klassisch</label>
-                    <label class="radio-item"><input type="radio" name="q16" value="Niederländische Meister (z. B. Jan van Eyck)"> Niederländische Meister (z. B. Jan van Eyck) - Detailreich, leuchtend</label>
-                    <label class="radio-item"><input type="radio" name="q16" value="Barock / Chiaroscuro (z. B. Caravaggio)"> Barock / Chiaroscuro (z. B. Caravaggio) - Dramatisches Licht</label>
-                    <label class="radio-item"><input type="radio" name="q16" value="Manierismus (z. B. El Greco)"> Manierismus (z. B. El Greco) - Spirituelle Überlänge</label>
-                    <label class="radio-item"><input type="radio" name="q16" value="Psychologischer Barock (Rembrandt)"> Psychologischer Barock (Rembrandt) - Warme Erdtöne, intim</label>
-                </div>
-
-                <div class="image-preview-container">
-                    <span style="font-size: 0.9em; color: #666; display: block; margin-bottom: 10px;">Malstile Übersicht:</span>
-                    <img id="styleGuideImage" src="malstile_beispiel.jpg" alt="Beispiel der Malstile" onerror="this.style.display='none'; document.getElementById('styleGuideFallback').style.display='block';">
-                    <div id="styleGuideFallback" style="display:none; color: #999; font-size: 0.85em;">
-                        Bild 'malstile_beispiel.jpg' nicht gefunden. Lade es im GitHub-Repository hoch, damit es hier erscheint.
-                        <br><br>
-                        <input type="file" id="localStyleGuide" accept="image/*" onchange="previewLocalImage(event)" style="font-size: 14px;">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button type="button" class="btn" onclick="generatePrompts()">Prompts erstellen</button>
-    </form>
-
-    <!-- ERGEBNIS BEREICH -->
-    <div id="results">
-        <h2>Deine maßgeschneiderten Prompts</h2>
-        <p>Kopiere diese Texte und füge sie in einen KI-Bildgenerator ein.</p>
-
-        <div class="flex-buttons">
-            <a href="https://gemini.google.com/" target="_blank" class="btn btn-secondary">In Gemini öffnen (Kostenlos)</a>
-            <a href="https://chatgpt.com/" target="_blank" class="btn btn-outline">In ChatGPT öffnen (DALL-E)</a>
-        </div>
-
-        <h3>Kunstwerk 1: Archaisches Kirchenfenster (Mittelalter)</h3>
-        <button class="btn btn-secondary" style="width: auto; margin-bottom: 10px;" onclick="copyPrompt('prompt1Text')">Kopiere diesen Prompt 📋</button>
-        <div id="prompt1Text" class="prompt-box"></div>
-
-        <h3>Kunstwerk 2: Sakrales Ölgemälde (Meisterwerk)</h3>
-        <button class="btn btn-secondary" style="width: auto; margin-bottom: 10px;" onclick="copyPrompt('prompt2Text')">Kopiere diesen Prompt 📋</button>
-        <div id="prompt2Text" class="prompt-box"></div>
-    </div>
-</div>
-
-<script>
-    // Logik für Checkbox-Limits
-    function setupCheckboxLimits(groupName, limit) {
-        const checkboxes = document.querySelectorAll(`input[name="${groupName}"]`);
-        checkboxes.forEach(cb => {
-            cb.addEventListener('change', () => {
-                const checkedCount = document.querySelectorAll(`input[name="${groupName}"]:checked`).length;
-                if (checkedCount >= limit) {
-                    checkboxes.forEach(box => {
-                        if (!box.checked) box.disabled = true;
-                    });
-                } else {
-                    checkboxes.forEach(box => box.disabled = false);
-                }
-            });
-        });
-    }
-
-    setupCheckboxLimits('q6', 2);
-    setupCheckboxLimits('q8b', 2);
-
-    // Geschlecht Auswahl
-    function selectGender(value, element) {
-        document.querySelectorAll('.gender-btn').forEach(btn => btn.classList.remove('active'));
-        element.classList.add('active');
-        document.getElementById('q7-gender').value = value;
-        
-        const otherInput = document.getElementById('q7-gender-other');
-        if (value === 'Anderes') {
-            otherInput.style.display = 'block';
-        } else {
-            otherInput.style.display = 'none';
-            otherInput.value = '';
-        }
-    }
-
-    // Lokales Bild Vorschau
-    function previewLocalImage(event) {
-        const reader = new FileReader();
-        reader.onload = function(){
-            const img = document.getElementById('styleGuideImage');
-            img.src = reader.result;
-            img.style.display = 'block';
-            document.getElementById('styleGuideFallback').style.display = 'none';
-        }
-        reader.readAsDataURL(event.target.files[0]);
-    }
-
-    function resetForm() {
-        if(confirm("Möchtest du wirklich alle Eingaben löschen?")) {
-            document.getElementById('profileForm').reset();
-            document.querySelectorAll('.gender-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('q7-gender').value = '';
-            document.getElementById('q7-gender-other').style.display = 'none';
-            document.querySelectorAll('input[type="checkbox"]').forEach(box => box.disabled = false);
-            document.getElementById('results').style.display = 'none';
-            window.scrollTo(0, 0);
-        }
-    }
-
-    function getVal(id) {
-        return document.getElementById(id).value.trim() || "[Nicht angegeben]";
-    }
-
-    function getCheckedValues(name) {
-        const checked = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
-        return checked.length > 0 ? checked.join(' & ') : "[Nicht angegeben]";
-    }
-
-    function copyPrompt(elementId) {
-        const text = document.getElementById(elementId).innerText;
-        navigator.clipboard.writeText(text).then(() => {
-            alert("Prompt erfolgreich in die Zwischenablage kopiert!\n\nDu kannst ihn nun bei Gemini oder ChatGPT einfügen.");
-        });
-    }
-
-    function generatePrompts() {
-        // Collect Data
-        let gender = document.getElementById('q7-gender').value;
-        if (gender === 'Anderes') gender = document.getElementById('q7-gender-other').value;
-        if (!gender) gender = "[Geschlecht nicht angegeben]";
-
-        const q7 = `${gender}, ${getVal('q7-age')}, ${getVal('q7-pheno')} descent, build: ${getVal('q7-build')}, features: ${getVal('q7-features')}`;
-        const q8a = getVal('q8a');
-        const q8b = getCheckedValues('q8b');
-        const q9 = getVal('q9');
-        const q10 = getVal('q10');
-        const q11 = getVal('q11');
-        const q12 = getVal('q12');
-        const q13 = getVal('q13');
-        const q14 = getVal('q14');
-        const q15 = getVal('q15');
-        const q16 = document.querySelector('input[name="q16"]:checked')?.value || "[Klassischer Meisterstil]";
-
-        // Charism hint based on Q2
-        const spirituality = getVal('q2').toLowerCase();
-        let charismHint = "radiant with divine peace";
-        if(spirituality.includes('regnum') || spirituality.includes('rc')) {
-            charismHint = "embodying the charism of deep friendship with Christ and bold apostolic zeal for His Kingdom";
-        } else if (spirituality.includes('franzisk')) {
-            charismHint = "radiating Franciscan joy, simplicity, and love for creation";
-        }
-
-        // Prompt 1: Weathered Romanesque-Gothic Stained Glass
-        const prompt1 = `An ancient, highly primitive and weathered 12th-to-13th century Romanesque-Gothic "pot-metal" stained glass window (vitrail) in the crudest, most rustic medieval style of early Cologne Cathedral and Sainte-Chapelle, possessing an ultra-flat, mosaic-like quality. 
-
-The entire composition is aggressively fragmented by a dense, erratic network of extremely thick, irregular black lead cames (metal came) and spidery "repair leads" that slice haphazardly through characters, objects, and borders alike, breaking the scene into tiny, uneven glass shards. The window shows heavy natural aging: it is dark, gritty, and heavily weathered with centuries of grime, browning, dark corrosion pitting, and exterior encrustations that mute the backlighting. The hand-blown, unevenly dense "pot-metal" glass is rich in historical flaws, bubbles, and warps, shifting unevenly in deep, patchy jewel tones of saturated ${q8b}, dense cobalt blues, earthy saffron yellows, and sage greens, with aged, yellowed translucent off-whites.
-
-All figures and objects are "clunky," flat, and earnest, with primitive, non-linear vertical stacking and absolutely no three-dimensional perspective. Features are heavily and coarsely hand-drawn with dark, uneven, worn vitreous glass paint (grisaille) using thick, expressive, slightly primitive brush strokes. Human figures have highly stylized, angular, and "blocky" anatomy—including disproportionately large "staring" eyes, heavy dark brows, blocky noses, and stiff, pattern-like beards and garments, completely devoid of realistic proportions, curves, or smooth gradients. 
-
-Subject: Full-length standing Catholic saint, ${q7}, ${charismHint}.
-Attire: Primitive leaded representations of ${q8a} in heavy jewel tones of ${q8b}.
-Right Hand (Apostolic Action): Coarsely stylized, actively holding or interacting with ${q10} with flat leaded outlines.
-Left Hand (Heart / Devotion): Clunky and flat, pressed against chest holding ${q11}.
-Chest Emblem: Primitive flat glass emblem displaying ${q12}.
-Halo: ${q9} rendered in thick, clunky leaded glass segments with primitive concentric rings.
-At the Feet (Ground): Objects representing ${q13} rendered heavily simplified, rustic, geometric, and barely recognizable as flat mosaic-like shards.
-Setting & Background: Towering lancet frame enclosing a crude, flat medieval backdrop of ${q14}.
-Banner Scroll: An aged, flowing parchment ribbon along the bottom with crude, irregular, hand-painted primitive medieval lettering reading: "${q15}". 
-
-The entire scene looks dark, raw, authentic, and heavily textured, as if seen in a dimly lit 800-year-old cathedral.`;
-
-        // Prompt 2: Masterpiece Oil Painting
-        const prompt2 = `A breathtaking, museum-grade historical sacred devotional oil painting on dark primed wood panel, executed in the revered master style of ${q16}. Rich dramatic chiaroscuro with velvety shadows, golden warm directional lighting, and delicate sfumato blending. 
-
-Subject: Full-length standing portrait of a dignified Catholic saint, ${q7}. 
-Expression: Deeply moving spiritual interiority, ${charismHint}, eyes filled with compassionate love and resolute holy conviction, simultaneously human and touched by the divine. 
-Attire: Masterfully rendered drapery of heavy fabric reflecting ${q8a} in hues of ${q8b}, featuring subtle golden embroidery or details of ${q12} across the breast. 
-Hands & Gestures: Right hand extended forward or held upright displaying ${q10}, manifesting their active missionary apostolate; Left hand resting firmly upon the chest holding ${q11}, anchoring their interior devotion. 
-Base / Ground: Standing barefoot or in simple footwear upon realistically rendered ground; at their feet rest symbolic objects: ${q13}. 
-Halo: ${q9} floating gracefully above the head, casting a soft sacred sheen. 
-Atmospheric Background: A sweeping majestic landscape visible behind the figure: ${q14} bathed in soft golden hour twilight. 
-Engraved Cartouche: A classical aged marble plinth or parchment banderole along the lower foreground inscribed with the motto: "${q15}". 
-
-Aesthetic: Authentic sacred masterpiece, physical oil paint texture, fine craquelure varnish, profound sacred depth, anatomical elegance, 8k resolution, authentic Catholic iconography.`;
-
-        document.getElementById('prompt1Text').innerText = prompt1;
-        document.getElementById('prompt2Text').innerText = prompt2;
-        
-        document.getElementById('results').style.display = 'block';
-        document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
-    }
-</script>
-
-</body>
-</html>
+        .clearfix::after
