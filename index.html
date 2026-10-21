@@ -1,1413 +1,594 @@
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Der einzigartige Heilige, den Gott in dir sieht – Dein Unikat-Profil</title>
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            cinzel: ['Cinzel', 'serif'],
-            sans: ['Inter', 'sans-serif'],
-          },
-          colors: {
-            sacred: {
-              gold: '#D4AF37',
-              goldLight: '#F3E5AB',
-              goldDark: '#997A15',
-              navy: '#090E1A',
-              card: '#121A2E',
-              crimson: '#800020',
-              parchment: '#FAF7F0',
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unikat-Profil: Dein Heiligenbild</title>
+    <style>
+        :root {
+            --bg-color: #fdfbf7;
+            --text-color: #2c3e50;
+            --primary-color: #1a365d;
+            --accent-color: #b8860b;
+            --border-color: #e2e8f0;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--accent-color);
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .quote {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .radio-item:hover, .checkbox-item:hover {
+            background: #f1f5f9;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+
+        .color-meaning {
+            font-size: 0.85em;
+            color: #64748b;
+            display: block;
+            margin-left: 25px;
+        }
+
+        .gender-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .gender-btn {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .gender-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .image-preview-container {
+            text-align: center;
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px dashed var(--accent-color);
+            border-radius: 8px;
+            background: white;
+        }
+
+        .image-preview-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            background-color: #9a7009;
+        }
+
+        .btn-secondary {
+            background-color: var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #122643;
+        }
+
+        .btn-danger {
+            background-color: #ef4444;
+            margin-bottom: 20px;
+        }
+
+        .btn-danger:hover {
+            background-color: #dc2626;
+        }
+
+        .btn-outline {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: #f1f5f9;
+        }
+
+        #results {
+            display: none;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .prompt-box {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .flex-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .flex-buttons .btn {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .hint {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .flex-buttons {
+                flex-direction: column;
             }
-          }
         }
-      }
-    }
-  </script>
-
-  <style>
-    /* Custom liturgical scrollbar & subtle glows */
-    ::-webkit-scrollbar {
-      width: 7px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #090E1A;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #2D3748;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #D4AF37;
-    }
-    .gold-glow {
-      box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
-    }
-    .custom-radio:checked, .custom-checkbox:checked {
-      background-color: #D4AF37;
-      border-color: #D4AF37;
-    }
-  </style>
+    </style>
 </head>
-<body class="bg-[#080D18] text-slate-100 font-sans min-h-screen antialiased selection:bg-amber-600 selection:text-white flex flex-col justify-between">
+<body>
 
-  <!-- Header Banner -->
-  <header class="relative border-b border-amber-600/30 bg-gradient-to-b from-[#131D33] via-[#0D1526] to-[#080D18] px-4 pt-8 pb-7 text-center overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:24px_24px]"></div>
-    <div class="relative max-w-4xl mx-auto">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-3 shadow-inner">
-        <i class="fa-solid fa-cross text-[11px]"></i>
-        Workshop & Apostolische Reflexion
-      </div>
-      <h1 class="text-3xl md:text-5xl font-cinzel font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-amber-300 to-amber-500 drop-shadow-sm">
-        Der einzigartige Heilige
-      </h1>
-      <p class="text-base md:text-xl font-cinzel text-amber-200/90 mt-1">den Gott in dir sieht – Dein Unikat-Profil</p>
-      
-      <blockquote class="mt-4 italic text-slate-300 text-xs md:text-sm max-w-xl mx-auto border-l-2 border-amber-500/50 pl-4 py-1 text-left bg-slate-900/40 rounded-r-lg">
-        „Gott hat uns alle als Unikate geschaffen, doch viele sterben als Fotokopien.“
-        <span class="block not-italic text-xs font-semibold text-amber-400 mt-1">— Sel. Carlo Acutis</span>
-      </blockquote>
+<div class="container">
+    <h1>Der einzigartige Heilige, den Gott in dir sieht</h1>
+    <p class="quote">„Gott hat uns alle als Unikate geschaffen, doch viele sterben als Fotokopien."<br>— Sel. Carlo Acutis</p>
 
-      <!-- Quick Action Buttons -->
-      <div class="mt-5 flex flex-wrap justify-center items-center gap-2.5 text-xs">
-        <button type="button" onclick="loadSample('priest')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-200 transition font-medium">
-          <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i> Beispiel: Priester am See Genezareth
-        </button>
-        <button type="button" onclick="loadSample('missionary')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-500/40 text-indigo-200 transition font-medium">
-          <i class="fa-solid fa-compass text-indigo-400"></i> Beispiel: Digitale Apostelin & Kunst
-        </button>
-        <button type="button" onclick="resetForm()" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-slate-400 transition">
-          <i class="fa-solid fa-arrow-rotate-left"></i> Neu
-        </button>
-      </div>
-    </div>
-  </header>
+    <button type="button" class="btn btn-danger" onclick="resetForm()">Alle Eingaben löschen & Neu starten</button>
 
-  <!-- Step Navigation Stepper -->
-  <nav class="sticky top-0 z-30 bg-[#0A1020]/95 backdrop-blur-md border-b border-slate-800 px-4 py-2.5 shadow-md">
-    <div class="max-w-4xl mx-auto flex items-center justify-between text-xs md:text-sm">
-      <div class="flex items-center space-x-1 sm:space-x-3 w-full justify-between">
-        <button onclick="goToStep(1)" id="step-btn-1" class="step-btn flex items-center gap-1.5 font-bold text-amber-400 border-b-2 border-amber-400 pb-1">
-          <span class="w-5 h-5 rounded-full bg-amber-400 text-slate-900 font-bold flex items-center justify-center text-[10px]">A</span>
-          <span class="hidden sm:inline">Geistlich</span>
-        </button>
-        <div class="h-0.5 w-6 bg-slate-800"></div>
-        <button onclick="goToStep(2)" id="step-btn-2" class="step-btn flex items-center gap-1.5 font-medium text-slate-400 border-b-2 border-transparent pb-1">
-          <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-400 font-bold flex items-center justify-center text-[10px]">B</span>
-          <span class="hidden sm:inline">Erscheinung</span>
-        </button>
-        <div class="h-0.5 w-6 bg-slate-800"></div>
-        <button onclick="goToStep(3)" id="step-btn-3" class="step-btn flex items-center gap-1.5 font-medium text-slate-400 border-b-2 border-transparent pb-1">
-          <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-400 font-bold flex items-center justify-center text-[10px]">C</span>
-          <span class="hidden sm:inline">Attribute</span>
-        </button>
-        <div class="h-0.5 w-6 bg-slate-800"></div>
-        <button onclick="goToStep(4)" id="step-btn-4" class="step-btn flex items-center gap-1.5 font-medium text-slate-400 border-b-2 border-transparent pb-1">
-          <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-400 font-bold flex items-center justify-center text-[10px]"><i class="fa-solid fa-crown text-[9px]"></i></span>
-          <span class="font-bold text-amber-300">Prompts & Bilder</span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Main Content Form Area -->
-  <main class="max-w-4xl mx-auto px-4 py-6 w-full flex-1">
-    <form id="saintProfileForm" onsubmit="event.preventDefault();">
-
-      <!-- ========================================== -->
-      <!-- TEIL A: GEISTLICHE AUSRICHTUNG & CHARISMA -->
-      <!-- ========================================== -->
-      <section id="step-1" class="step-content space-y-6">
-        <div class="bg-gradient-to-r from-amber-950/30 via-[#111A2E] to-[#111A2E] border border-amber-500/30 rounded-2xl p-5 md:p-6 shadow-xl">
-          <div class="flex items-center gap-3 border-b border-amber-500/20 pb-4 mb-6">
-            <span class="p-2.5 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/40">
-              <i class="fa-solid fa-fire text-lg"></i>
-            </span>
-            <div>
-              <h2 class="text-xl md:text-2xl font-cinzel font-bold text-amber-100">Teil A: Geistliche Ausrichtung & Charisma</h2>
-              <p class="text-xs md:text-sm text-slate-400">Das innere Fundament deines Dienstes und Zeugnisses</p>
-            </div>
-          </div>
-
-          <!-- Question 1 -->
-          <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <label class="block text-sm font-semibold text-amber-200 mb-3">1. Grundhaltung deines Dienstes:</label>
-            <div class="grid grid-cols-1 gap-2 text-xs md:text-sm">
-              <label class="flex items-start gap-3 p-3 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q1_posture" value="Aktiv: Mitten im Getümmel, praktisch zupackend, anpackend für andere" class="mt-1 text-amber-500">
-                <span><strong>A) Aktiv:</strong> Mitten im Getümmel, praktisch zupackend, anpackend für andere.</span>
-              </label>
-              <label class="flex items-start gap-3 p-3 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q1_posture" value="Kontemplativ: Ruhig, Beter, Hörender, Oase der Stille und des Trostes" class="mt-1 text-amber-500">
-                <span><strong>B) Kontemplativ:</strong> Ruhig, Beter, Hörender, Oase der Stille und des Trostes.</span>
-              </label>
-              <label class="flex items-start gap-3 p-3 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q1_posture" value="Lehrend/Intellektuell: Suche nach Wahrheit, Dialog, Bildung, Glaubensvertiefung" class="mt-1 text-amber-500">
-                <span><strong>C) Lehrend/Intellektuell:</strong> Suche nach Wahrheit, Dialog, Bildung, Glaubensvertiefung.</span>
-              </label>
-              <label class="flex items-start gap-3 p-3 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q1_posture" value="Pionier/Missionarisch: Neue Wege aufbrechen, Mut, Grenzen überschreiten" class="mt-1 text-amber-500">
-                <span><strong>D) Pionier/Missionarisch:</strong> Neue Wege aufbrechen, Mut, Grenzen überschreiten.</span>
-              </label>
-              <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800">
-                <label class="flex items-center gap-2 mb-1.5 cursor-pointer">
-                  <input type="radio" name="q1_posture" value="other" id="q1_other_radio" class="text-amber-500">
-                  <span class="font-semibold text-slate-300">E) Anderes:</span>
-                </label>
-                <input type="text" id="q1_other_text" placeholder="Eigene Formulierung eingeben..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-              </div>
-            </div>
-          </div>
-
-          <!-- Question 2 -->
-          <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <label class="block text-sm font-semibold text-amber-200 mb-3">2. Deine geistliche Heimat (Spiritualität):</label>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs md:text-sm">
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q2_spirituality" value="Christozentrisch (RC): Jesus im Gebet als lebendigen Freund begegnen und danach rausgehen, um andere für ihn zu begeistern (König)" class="mt-1 text-amber-500">
-                <span><strong>A) Christozentrisch (RC):</strong> Christus als lebendiger Freund & König.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q2_spirituality" value="Franziskanisch: Schlichtheit, Liebe zur Schöpfung, Freude und Geschwisterlichkeit mit den Ärmsten" class="mt-1 text-amber-500">
-                <span><strong>B) Franziskanisch:</strong> Schlichtheit, Liebe zur Schöpfung, Freude.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q2_spirituality" value="Ignatianisch: Kluges Unterscheiden der Geister, Gott in allen Dingen suchen und finden" class="mt-1 text-amber-500">
-                <span><strong>C) Ignatianisch:</strong> Unterscheidung, Gott in allem finden.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q2_spirituality" value="Karmelitisch/Theresianisch: Der Kleine Weg, unbedingtes Vertrauen, Hingabe im Verborgenen" class="mt-1 text-amber-500">
-                <span><strong>D) Karmelitisch:</strong> Kleiner Weg, unbedingtes Vertrauen.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q2_spirituality" value="Dominikanisch/Paulinisch: Das Wort Gottes studieren, predigen und die Wahrheit verkünden" class="mt-1 text-amber-500">
-                <span><strong>E) Dominikanisch/Paulinisch:</strong> Wahrheit verkünden & studieren.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q2_spirituality" value="Benediktinisch: Ora et labora – Maß, Ordnung, Beständigkeit und Gastfreundschaft" class="mt-1 text-amber-500">
-                <span><strong>F) Benediktinisch:</strong> „Ora et labora“ – Maß & Gastfreundschaft.</span>
-              </label>
-            </div>
-            <div class="mt-2 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
-              <label class="flex items-center gap-2 mb-1 cursor-pointer">
-                <input type="radio" name="q2_spirituality" value="other" id="q2_other_radio" class="text-amber-500">
-                <span class="font-semibold text-slate-300 text-xs">G) Anderes:</span>
-              </label>
-              <input type="text" id="q2_other_text" placeholder="Deine geistliche Heimat..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-            </div>
-          </div>
-
-          <!-- Question 3 -->
-          <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <label class="block text-sm font-semibold text-amber-200 mb-3">3. Dein Lebensstand in der Welt:</label>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs md:text-sm">
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q3_state" value="Laie mitten in Beruf & Studium: Heiligung der alltäglichen Arbeit und der weltlichen Kultur" class="mt-1 text-amber-500">
-                <span><strong>A) Laie in Beruf & Studium:</strong> Heiligung des Alltags und der Kultur.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q3_state" value="Familie / Eheleben: Heiligung der Beziehung, des Zuhauses und der Kindererziehung" class="mt-1 text-amber-500">
-                <span><strong>B) Familie / Eheleben:</strong> Heiligung der Beziehung und des Zuhauses.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q3_state" value="Geweihtes Leben / Priestertum / Ordensstand: Radikale Hingabe als sichtbares Zeichen des Himmels" class="mt-1 text-amber-500">
-                <span><strong>C) Priestertum / Geweihtes Leben:</strong> Radikale Hingabe als Himmelszeichen.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q3_state" value="Digitaler Apostel / Brückenbauer: Mission in Medien, Kunst, Politik und moderner Gesellschaft" class="mt-1 text-amber-500">
-                <span><strong>D) Digitaler Apostel / Brückenbauer:</strong> Medien, Kultur & Gesellschaft.</span>
-              </label>
-            </div>
-            <div class="mt-2 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
-              <label class="flex items-center gap-2 mb-1 cursor-pointer">
-                <input type="radio" name="q3_state" value="other" id="q3_other_radio" class="text-amber-500">
-                <span class="font-semibold text-slate-300 text-xs">E) Anderes:</span>
-              </label>
-              <input type="text" id="q3_other_text" placeholder="Eigener Lebensstand..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-            </div>
-          </div>
-
-          <!-- Question 4 -->
-          <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <label class="block text-sm font-semibold text-amber-200 mb-3">4. Wundertaten & charismatische Zeichen durch dein Wirken:</label>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs md:text-sm">
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q4_miracles" value="Heilung von seelischen Wunden & Befreiung von inneren Ängsten/Ketten" class="mt-1 text-amber-500">
-                <span><strong>A) Seelische Heilung:</strong> Befreiung von inneren Ängsten & Ketten.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q4_miracles" value="Prophetische Eingebungen & das richtige Wort zur rechten Zeit für Suchende" class="mt-1 text-amber-500">
-                <span><strong>B) Prophetische Eingebungen:</strong> Das rechte Wort zur rechten Zeit.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q4_miracles" value="Friedensstiftung & Versöhnung zwischen verfeindeten Lagern" class="mt-1 text-amber-500">
-                <span><strong>C) Friedensstiftung:</strong> Versöhnung zwischen verfeindeten Lagern.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q4_miracles" value="Körperliche Krankenheilung & spürbare Gebetserhörungen" class="mt-1 text-amber-500">
-                <span><strong>D) Körperliche Heilung:</strong> Spürbare Gebetserhörungen.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition md:col-span-2">
-                <input type="radio" name="q4_miracles" value="Stille Wunder der Ausdauer: Treue und Hoffnung dort, wo alles dunkel scheint" class="mt-1 text-amber-500">
-                <span><strong>E) Wunder der Ausdauer:</strong> Treue & Hoffnung im Verborgenen.</span>
-              </label>
-            </div>
-            <div class="mt-2 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
-              <label class="flex items-center gap-2 mb-1 cursor-pointer">
-                <input type="radio" name="q4_miracles" value="other" id="q4_other_radio" class="text-amber-500">
-                <span class="font-semibold text-slate-300 text-xs">F) Anderes:</span>
-              </label>
-              <input type="text" id="q4_other_text" placeholder="Weitere Gnaden..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-            </div>
-          </div>
-
-          <!-- Question 5 -->
-          <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <label class="block text-sm font-semibold text-amber-200 mb-3">5. Größte persönliche Schwäche (die Gottes Gnade verwandelt):</label>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs md:text-sm">
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q5_weakness" value="Ungeduld, Jähzorn und Drang zu schnellen Ergebnissen" class="mt-1 text-amber-500">
-                <span><strong>A) Ungeduld:</strong> Jähzorn und Drang zu schnellen Resultaten.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q5_weakness" value="Menschenfurcht, Angst vor Ablehnung und übertriebenes Harmoniebedürfnis" class="mt-1 text-amber-500">
-                <span><strong>B) Menschenfurcht:</strong> Angst vor Ablehnung & Konfliktscheue.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q5_weakness" value="Stolz, Perfektionismus und der Zwang, alles selbst kontrollieren zu wollen" class="mt-1 text-amber-500">
-                <span><strong>C) Perfektionismus:</strong> Kontrollzwang und Stolz.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q5_weakness" value="Trägheit, geistliche Bequemlichkeit und Aufschieberitis" class="mt-1 text-amber-500">
-                <span><strong>D) Trägheit:</strong> Bequemlichkeit und Aufschieberitis.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition md:col-span-2">
-                <input type="radio" name="q5_weakness" value="Grübeln, Selbstzweifel und Mangel an Gottvertrauen" class="mt-1 text-amber-500">
-                <span><strong>E) Grübeln:</strong> Selbstzweifel und Mangel an Gottvertrauen.</span>
-              </label>
-            </div>
-            <div class="mt-2 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
-              <label class="flex items-center gap-2 mb-1 cursor-pointer">
-                <input type="radio" name="q5_weakness" value="other" id="q5_other_radio" class="text-amber-500">
-                <span class="font-semibold text-slate-300 text-xs">F) Anderes:</span>
-              </label>
-              <input type="text" id="q5_other_text" placeholder="Eigene Schwäche eingeben..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-            </div>
-          </div>
-
-          <!-- Question 6 (Choose exactly 2) -->
-          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <div class="flex items-center justify-between mb-3">
-              <label class="block text-sm font-semibold text-amber-200">6. Wähle ZWEI Haupttugenden deines Zeugnisses (Genau 2):</label>
-              <span id="q6-count" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">0 / 2 gewählt</span>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs md:text-sm">
-              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="checkbox" name="q6_virtue" value="Heroischer Mut / Tapferkeit" onchange="handleVirtueLimit(this)" class="rounded text-amber-500">
-                <span><strong>A)</strong> Heroischer Mut / Tapferkeit</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="checkbox" name="q6_virtue" value="Sanftmütige Barmherzigkeit & Vergebungsbereitschaft" onchange="handleVirtueLimit(this)" class="rounded text-amber-500">
-                <span><strong>B)</strong> Sanftmütige Barmherzigkeit</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="checkbox" name="q6_virtue" value="Lautere Reinheit des Herzens & Echtheit" onchange="handleVirtueLimit(this)" class="rounded text-amber-500">
-                <span><strong>C)</strong> Lautere Reinheit des Herzens</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="checkbox" name="q6_virtue" value="Brennender apostolischer Eifer & Missionsdrang" onchange="handleVirtueLimit(this)" class="rounded text-amber-500">
-                <span><strong>D)</strong> Brennender apostolischer Eifer</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="checkbox" name="q6_virtue" value="Demut & Freude am Dienst im Verborgenen" onchange="handleVirtueLimit(this)" class="rounded text-amber-500">
-                <span><strong>E)</strong> Demut & Dienst im Verborgenen</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="checkbox" name="q6_virtue" value="Unerschütterliches Gottvertrauen / Hoffnung" onchange="handleVirtueLimit(this)" class="rounded text-amber-500">
-                <span><strong>F)</strong> Gottvertrauen & Hoffnung</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="checkbox" name="q6_virtue" value="Kluge Unterscheidungsgabe & Weisheit" onchange="handleVirtueLimit(this)" class="rounded text-amber-500">
-                <span><strong>G)</strong> Kluge Unterscheidung & Weisheit</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="checkbox" name="q6_virtue" value="Treue und Geduld im Leiden" onchange="handleVirtueLimit(this)" class="rounded text-amber-500">
-                <span><strong>H)</strong> Treue und Geduld im Leiden</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="checkbox" name="q6_virtue" value="Großherzige Freigebigkeit & Teilen" onchange="handleVirtueLimit(this)" class="rounded text-amber-500">
-                <span><strong>I)</strong> Großherzige Freigebigkeit</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="checkbox" name="q6_virtue" value="Geistliche Freude & ansteckender Humor" onchange="handleVirtueLimit(this)" class="rounded text-amber-500">
-                <span><strong>J)</strong> Geistliche Freude & Humor</span>
-              </label>
-            </div>
-            <div class="mt-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800">
-              <label class="flex items-center gap-2 mb-1 cursor-pointer">
-                <input type="checkbox" name="q6_virtue" value="other" id="q6_other_check" onchange="handleVirtueLimit(this)" class="text-amber-500 rounded">
-                <span class="font-semibold text-slate-300 text-xs">K) Anderes:</span>
-              </label>
-              <input type="text" id="q6_other_text" placeholder="Eigene Tugend..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-            </div>
-          </div>
-
-          <div class="flex justify-end pt-4">
-            <button type="button" onclick="goToStep(2)" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm flex items-center gap-2 shadow-lg transition">
-              Weiter zu Teil B <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========================================== -->
-      <!-- TEIL B: ERSCHEINUNG & FARBEN               -->
-      <!-- ========================================== -->
-      <section id="step-2" class="step-content hidden space-y-6">
-        <div class="bg-gradient-to-r from-amber-950/30 via-[#111A2E] to-[#111A2E] border border-amber-500/30 rounded-2xl p-5 md:p-6 shadow-xl">
-          <div class="flex items-center gap-3 border-b border-amber-500/20 pb-4 mb-6">
-            <span class="p-2.5 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/40">
-              <i class="fa-solid fa-palette text-lg"></i>
-            </span>
-            <div>
-              <h2 class="text-xl md:text-2xl font-cinzel font-bold text-amber-100">Teil B: Erscheinung & Farben</h2>
-              <p class="text-xs md:text-sm text-slate-400">Die sichtbare Gestalt, Gewänder und liturgische Symbolfarben</p>
-            </div>
-          </div>
-
-          <!-- Question 7: Physical Appearance -->
-          <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <label class="block text-sm font-semibold text-amber-200 mb-3">7. Physische Gestalt für das Bild:</label>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
-              <div>
-                <label class="block text-slate-300 font-medium mb-1">Geschlecht:</label>
-                <input type="text" id="q7_gender" placeholder="z. B. Männlich / Weiblich" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-amber-400">
-              </div>
-              <div>
-                <label class="block text-slate-300 font-medium mb-1">Phänotyp / Herkunft:</label>
-                <input type="text" id="q7_ethnicity" placeholder="z. B. libanesisch, mediterran, nordisch" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-amber-400">
-              </div>
-              <div>
-                <label class="block text-slate-300 font-medium mb-1">Altersanmutung:</label>
-                <input type="text" id="q7_age" placeholder="z. B. ca. 40 J. alt, weise, jugendlich 20" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-amber-400">
-              </div>
-              <div>
-                <label class="block text-slate-300 font-medium mb-1">Statur / Größe:</label>
-                <input type="text" id="q7_height" placeholder="z. B. 1,83m groß, athletisch, schlank" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-amber-400">
-              </div>
-              <div class="sm:col-span-2">
-                <label class="block text-slate-300 font-medium mb-1">Haar-, Augenfarbe & Merkmale (Bart, Brille etc.):</label>
-                <input type="text" id="q7_features" placeholder="z. B. dunkles Haar, Vollbart mit Backenbart & Schnurrbart, warme Augen" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-amber-400">
-              </div>
-            </div>
-          </div>
-
-          <!-- Question 8a: Clothing Type -->
-          <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <label class="block text-sm font-semibold text-amber-200 mb-3">8a. Art der Kleidung (Wähle 1 Option):</label>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
-              <label class="flex items-center gap-2 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q8a_clothing" value="Priestergewand / Talar & liturgische Gewänder" class="text-amber-500">
-                <span>Priestertalar & Messgewand</span>
-              </label>
-              <label class="flex items-center gap-2 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q8a_clothing" value="Klassisches Ordensgewand / Mönchskutte" class="text-amber-500">
-                <span>Mönchskutte / Habit</span>
-              </label>
-              <label class="flex items-center gap-2 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q8a_clothing" value="Jeans / Casual" class="text-amber-500">
-                <span>Jeans / Casual</span>
-              </label>
-              <label class="flex items-center gap-2 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q8a_clothing" value="Elegant / Anzug / Langes Kleid" class="text-amber-500">
-                <span>Elegant / Kleid / Anzug</span>
-              </label>
-              <label class="flex items-center gap-2 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q8a_clothing" value="Trekking / Outdoor" class="text-amber-500">
-                <span>Trekking / Outdoor</span>
-              </label>
-              <label class="flex items-center gap-2 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q8a_clothing" value="Schlicht / Minimalistisch" class="text-amber-500">
-                <span>Schlicht / Minimalistisch</span>
-              </label>
-            </div>
-            <div class="mt-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800">
-              <label class="flex items-center gap-2 mb-1 cursor-pointer">
-                <input type="radio" name="q8a_clothing" value="other" id="q8a_other_radio" class="text-amber-500">
-                <span class="font-semibold text-slate-300 text-xs">Anderes:</span>
-              </label>
-              <input type="text" id="q8a_other_text" placeholder="z. B. Arztkittel, historische Tracht, Pilgerkutte..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-            </div>
-          </div>
-
-          <!-- Question 8b: Robe Colors (Max 2) -->
-          <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <div class="flex items-center justify-between mb-3">
-              <label class="block text-sm font-semibold text-amber-200">8b. Farben des Gewandes (1 oder 2 Farben wählen):</label>
-              <span id="q8b-count" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">0 / 2 gewählt</span>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-purple-500/50 cursor-pointer">
-                <input type="checkbox" name="q8b_color" value="Königspurpur / Violett (Königswürde, Buße)" onchange="handleColorLimit(this)" class="rounded text-purple-500">
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-purple-700 inline-block"></span> Königspurpur</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-red-500/50 cursor-pointer">
-                <input type="checkbox" name="q8b_color" value="Rubinrot (Brennende Liebe, Heiliger Geist)" onchange="handleColorLimit(this)" class="rounded text-red-500">
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-red-700 inline-block"></span> Rubinrot</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-blue-500/50 cursor-pointer">
-                <input type="checkbox" name="q8b_color" value="Dunkelblau (Göttliche Wahrheit, Treue)" onchange="handleColorLimit(this)" class="rounded text-blue-500">
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-blue-700 inline-block"></span> Dunkelblau</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-emerald-500/50 cursor-pointer">
-                <input type="checkbox" name="q8b_color" value="Smaragdgrün (Hoffnung, neues Leben)" onchange="handleColorLimit(this)" class="rounded text-emerald-500">
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-600 inline-block"></span> Smaragdgrün</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-400/50 cursor-pointer">
-                <input type="checkbox" name="q8b_color" value="Gold / Safrangelb (Glanz der Gnade, göttliche Weisheit)" onchange="handleColorLimit(this)" class="rounded text-amber-500">
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span> Gold / Gelb</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-slate-300/50 cursor-pointer">
-                <input type="checkbox" name="q8b_color" value="Reinweiß (Reinheit, Auferstehung, Licht)" onchange="handleColorLimit(this)" class="rounded text-slate-100">
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-white inline-block"></span> Reinweiß</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-800/50 cursor-pointer">
-                <input type="checkbox" name="q8b_color" value="Erdbraun / Ocker (Demut, Schlichtheit)" onchange="handleColorLimit(this)" class="rounded text-amber-800">
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-amber-800 inline-block"></span> Erdbraun</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-gray-500/50 cursor-pointer">
-                <input type="checkbox" name="q8b_color" value="Schwarz (Ernsthaftigkeit, Radikalität)" onchange="handleColorLimit(this)" class="rounded text-slate-900">
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-slate-950 border border-slate-600 inline-block"></span> Schwarz</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-pink-300/50 cursor-pointer">
-                <input type="checkbox" name="q8b_color" value="Rosenquarz / Pastell (Zärtlichkeit Gottes)" onchange="handleColorLimit(this)" class="rounded text-pink-300">
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-pink-300 inline-block"></span> Rosenquarz</span>
-              </label>
-            </div>
-            <div class="mt-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800">
-              <label class="flex items-center gap-2 mb-1 cursor-pointer">
-                <input type="checkbox" name="q8b_color" value="other" id="q8b_other_check" onchange="handleColorLimit(this)" class="text-amber-500 rounded">
-                <span class="font-semibold text-slate-300 text-xs">Anderes:</span>
-              </label>
-              <input type="text" id="q8b_other_text" placeholder="z. B. Himmelsblau, Silber, Koralle..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-            </div>
-          </div>
-
-          <!-- Question 9: Halo / Nimbus -->
-          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <label class="block text-sm font-semibold text-amber-200 mb-3">9. Heiligenschein (Nimbus):</label>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs md:text-sm">
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q9_halo" value="Raffael-Stil: Hauchdünner goldener Kreis, der schwerelos über dem Haupt schwebt" class="mt-1 text-amber-500" checked>
-                <span><strong>A) Raffael-Ring:</strong> Feiner, schwereloser Goldkreis über dem Haupt.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q9_halo" value="Strahlender goldener Rundnimbus mit gravierten Strahlen" class="mt-1 text-amber-500">
-                <span><strong>B) Strahlender Goldnimbus:</strong> Gravierte Strahlen (gotisch/byzantinisch).</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q9_halo" value="Kranz aus Olivenzweigen, Lorbeer oder Wildrosen" class="mt-1 text-amber-500">
-                <span><strong>C) Natürlicher Kranz:</strong> Olivenzweige, Lorbeer oder Wildrosen.</span>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition">
-                <input type="radio" name="q9_halo" value="Zarter, warmer Lichtkranz direkt um das Haupt" class="mt-1 text-amber-500">
-                <span><strong>D) Zarter Lichtkranz:</strong> Warmes Leuchten direkt am Haupt.</span>
-              </label>
-            </div>
-            <div class="mt-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800">
-              <label class="flex items-center gap-2 mb-1 cursor-pointer">
-                <input type="radio" name="q9_halo" value="other" id="q9_other_radio" class="text-amber-500">
-                <span class="font-semibold text-slate-300 text-xs">E) Anderes:</span>
-              </label>
-              <input type="text" id="q9_other_text" placeholder="z. B. Sternenkranz, Dreiecks-Nimbus..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-            </div>
-          </div>
-
-          <div class="flex justify-between pt-4">
-            <button type="button" onclick="goToStep(1)" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs md:text-sm flex items-center gap-2 transition">
-              <i class="fa-solid fa-arrow-left"></i> Zurück zu Teil A
-            </button>
-            <button type="button" onclick="goToStep(3)" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs md:text-sm flex items-center gap-2 shadow-lg transition">
-              Weiter zu Teil C <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========================================== -->
-      <!-- TEIL C: ATTRIBUTE & SYMBOLIK               -->
-      <!-- ========================================== -->
-      <section id="step-3" class="step-content hidden space-y-6">
-        <div class="bg-gradient-to-r from-amber-950/30 via-[#111A2E] to-[#111A2E] border border-amber-500/30 rounded-2xl p-5 md:p-6 shadow-xl">
-          <div class="flex items-center gap-3 border-b border-amber-500/20 pb-4 mb-6">
-            <span class="p-2.5 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/40">
-              <i class="fa-solid fa-gem text-lg"></i>
-            </span>
-            <div>
-              <h2 class="text-xl md:text-2xl font-cinzel font-bold text-amber-100">Teil C: Attribute & Symbolik</h2>
-              <p class="text-xs md:text-sm text-slate-400">Hände, Brustemblem, Fundamente zu Füßen, Hintergrund und historischer Malstil</p>
-            </div>
-          </div>
-
-          <!-- Question 10: Right Hand -->
-          <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <div class="flex items-center gap-2 mb-2">
-              <i class="fa-regular fa-hand text-amber-400"></i>
-              <label class="block text-sm font-semibold text-amber-200">10. Rechte Hand (Handlung, Gabe, Wirken in der Welt):</label>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs md:text-sm">
-              <label class="flex items-center gap-2.5 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q10_righthand" value="Erhobene Hand zum Segensgestus über die Betrachter" class="text-amber-500">
-                <span><strong>A)</strong> Segensgestus über Betrachter</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q10_righthand" value="Hält eine brennende Fackel / Laterne (Licht in der Finsternis)" class="text-amber-500">
-                <span><strong>B)</strong> Brennende Fackel / Laterne</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q10_righthand" value="Hält ein offenes Buch (Evangelium) oder eine Schreibfeder" class="text-amber-500">
-                <span><strong>C)</strong> Offenes Buch / Schreibfeder</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q10_righthand" value="Hält ein modernes Smartphone / Tablet mit aufleuchtendem Kreuz" class="text-amber-500">
-                <span><strong>D)</strong> Smartphone mit Kreuz</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q10_righthand" value="Reicht einem Mitmenschen ein Stück Brot / einen Becher Wasser" class="text-amber-500">
-                <span><strong>E)</strong> Reicht Brot / Becher Wasser</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q10_righthand" value="Hält ein Schwert des Geistes / den Stab des Pilgers" class="text-amber-500">
-                <span><strong>F)</strong> Schwert des Geistes / Stab</span>
-              </label>
-            </div>
-            <div class="mt-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800">
-              <label class="flex items-center gap-2 mb-1 cursor-pointer">
-                <input type="radio" name="q10_righthand" value="other" id="q10_other_radio" class="text-amber-500">
-                <span class="font-semibold text-slate-300 text-xs">G) Anderes:</span>
-              </label>
-              <input type="text" id="q10_other_text" placeholder="z. B. Monstranz mit der Eucharistie..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-            </div>
-          </div>
-
-          <!-- Question 11: Left Hand -->
-          <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <div class="flex items-center gap-2 mb-2">
-              <i class="fa-solid fa-heart text-rose-400"></i>
-              <label class="block text-sm font-semibold text-amber-200">11. Linke Hand (Herzseite, Schutz, Bekenntnis, Halt):</label>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs md:text-sm">
-              <label class="flex items-center gap-2.5 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q11_lefthand" value="Hält ein Kruzifix fest an die Brust gedrückt" class="text-amber-500">
-                <span><strong>A)</strong> Kruzifix an die Brust gedrückt</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q11_lefthand" value="Hält einen Rosenkranz eng umschlungen" class="text-amber-500">
-                <span><strong>B)</strong> Rosenkranz eng umschlungen</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q11_lefthand" value="Hält einen Anker (Symbol der unverrückbaren Hoffnung)" class="text-amber-500">
-                <span><strong>C)</strong> Anker (Feste Hoffnung)</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q11_lefthand" value="Hält weiße Lilien (Symbol der Reinheit und Hingabe)" class="text-amber-500">
-                <span><strong>D)</strong> Weiße Lilien (Reinheit)</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q11_lefthand" value="Hält ein Schild mit dem Christusmonogramm (IHS / Chi-Rho)" class="text-amber-500">
-                <span><strong>E)</strong> Schild mit Christusmonogramm</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q11_lefthand" value="Hand liegt flach auf dem eigenen Herzen" class="text-amber-500">
-                <span><strong>F)</strong> Flach auf dem eigenen Herzen</span>
-              </label>
-            </div>
-            <div class="mt-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800">
-              <label class="flex items-center gap-2 mb-1 cursor-pointer">
-                <input type="radio" name="q11_lefthand" value="other" id="q11_other_radio" class="text-amber-500">
-                <span class="font-semibold text-slate-300 text-xs">G) Anderes:</span>
-              </label>
-              <input type="text" id="q11_other_text" placeholder="Eigene Gebärde..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-            </div>
-          </div>
-
-          <!-- Question 12: Breast Emblem -->
-          <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <label class="block text-sm font-semibold text-amber-200 mb-3">12. Brust-Emblem / Spezieller Schmuck auf dem Gewand (Wähle 1):</label>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q12_emblem" value="Flammendes Herz Jesu mit Dornenkrone" class="text-amber-500">
-                <span>Herz Jesu mit Dornenkrone</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q12_emblem" value="Sanfte Taube des Heiligen Geistes im Flug" class="text-amber-500">
-                <span>Taube des Heiligen Geistes</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q12_emblem" value="Christus-Königs-Krone oder Siegespalme" class="text-amber-500">
-                <span>Christus-Königs-Krone / Palme</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q12_emblem" value="Ein goldener Kompass / Polarstern" class="text-amber-500">
-                <span>Goldener Kompass / Polarstern</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q12_emblem" value="Schlichtes Holzkreuz aus Olivenholz" class="text-amber-500">
-                <span>Schlichtes Holzkreuz</span>
-              </label>
-              <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q12_emblem" value="Weizenähren und Weintrauben (Eucharistie)" class="text-amber-500">
-                <span>Weizenähren & Trauben</span>
-              </label>
-            </div>
-            <div class="mt-2 p-2 rounded-lg bg-slate-950/60 border border-slate-800">
-              <label class="flex items-center gap-2 mb-1 cursor-pointer">
-                <input type="radio" name="q12_emblem" value="other" id="q12_other_radio" class="text-amber-500">
-                <span class="font-semibold text-slate-300 text-xs">Anderes:</span>
-              </label>
-              <input type="text" id="q12_other_text" placeholder="z. B. Violette Beichtstola als Zeichen des barmherzigen Beichtvaters..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-            </div>
-          </div>
-
-          <!-- Question 13 & 14 & 15: Open Texts -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-              <label class="block text-sm font-semibold text-amber-200 mb-1">13. Zu Füßen der Gestalt (Hürden, Fundamente, Hobbys):</label>
-              <p class="text-[11px] text-slate-400 mb-2">z. B. Brettspiele, Kochutensilien, Kamera, zerbrochene Ketten...</p>
-              <textarea id="q13_feet" rows="3" placeholder="z. B. Kisten Brettspiele zusammen mit Kochtöpfen und einer Nikon DSLR-Kamera..." class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400"></textarea>
-            </div>
-
-            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-              <label class="block text-sm font-semibold text-amber-200 mb-1">14. Der Hintergrund (Kulisse des Lebens):</label>
-              <p class="text-[11px] text-slate-400 mb-2">z. B. See Genezareth mit Fischerboot voller Netze, Gotischer Kreuzgang, Stadt-Skyline...</p>
-              <textarea id="q14_background" rows="3" placeholder="z. B. Ufer des Sees Genezareth, Petrus' Boot voller Netze und Fische..." class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400"></textarea>
-            </div>
-          </div>
-
-          <!-- Question 15: Motto -->
-          <div class="mb-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <label class="block text-sm font-semibold text-amber-200 mb-1">15. Dein Leitwort / Motto (Bibelvers oder Zitat):</label>
-            <p class="text-[11px] text-slate-400 mb-2">Erscheint auf dem antiken Spruchband / Cartouche</p>
-            <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-amber-500 font-cinzel text-lg">„</span>
-              <input type="text" id="q15_motto" placeholder="Duc in Altum!" class="w-full bg-slate-950 border border-slate-700 rounded-lg pl-8 pr-8 py-2 text-sm font-cinzel font-semibold text-amber-200 focus:outline-none focus:border-amber-400">
-              <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-amber-500 font-cinzel text-lg">“</span>
-            </div>
-          </div>
-
-          <!-- Question 16: Preferred Art Style -->
-          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-            <label class="block text-sm font-semibold text-amber-200 mb-3">16. Bevorzugter Malstil für das Ölgemälde:</label>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q16_style" value="Italienische Hochrenaissance: Harmonisch-klassischer Stil von Raffael, weiches Sfumato, erhabene Würde" class="mt-0.5 text-amber-500" checked>
-                <div>
-                  <strong class="text-amber-200">A) Italienische Renaissance (Raffael)</strong>
-                  <p class="text-slate-400 text-[11px]">Klassische Harmonie, weiches Sfumato, goldene Ausgewogenheit.</p>
-                </div>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q16_style" value="Flämische & Altniederländische Meister: Jan van Eyck, mikroskopische Detailtreue, leuchtende Edelsteinfarben" class="mt-0.5 text-amber-500">
-                <div>
-                  <strong class="text-amber-200">B) Flämische Meister (Jan van Eyck)</strong>
-                  <p class="text-slate-400 text-[11px]">Akribische Detailtreue, juwelenhafte Farbbrillanz.</p>
-                </div>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q16_style" value="Dramatischer Barock / Chiaroscuro: Caravaggio, tiefe Schatten, packende Lichtstrahlen, emotionale Radikalität" class="mt-0.5 text-amber-500">
-                <div>
-                  <strong class="text-amber-200">C) Barock / Chiaroscuro (Caravaggio)</strong>
-                  <p class="text-slate-400 text-[11px]">Dramatisches Licht, samtige Schatten, packende Kraft.</p>
-                </div>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q16_style" value="Manierismus / Spätrenaissance: El Greco, spirituelle Elongation, mystische Flammenfarben, tiefe Ekstase" class="mt-0.5 text-amber-500">
-                <div>
-                  <strong class="text-amber-200">D) Manierismus (El Greco)</strong>
-                  <p class="text-slate-400 text-[11px]">Geistliche Elongation, mystisches Licht, brennende Hingabe.</p>
-                </div>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q16_style" value="Spätgotik: Rogier van der Weyden, innige Frömmigkeit, feine Gewandfalten, andächtige Stille" class="mt-0.5 text-amber-500">
-                <div>
-                  <strong class="text-amber-200">E) Spätgotik (Rogier van der Weyden)</strong>
-                  <p class="text-slate-400 text-[11px]">Tiefe Andacht, feine Faltenwürfe, spirituelle Stille.</p>
-                </div>
-              </label>
-              <label class="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 hover:border-amber-500/50 cursor-pointer">
-                <input type="radio" name="q16_style" value="Psychologischer Barock: Rembrandt van Rijn, intimes warmes Licht, tiefgründige seelische Wärme" class="mt-0.5 text-amber-500">
-                <div>
-                  <strong class="text-amber-200">G) Seelen-Barock (Rembrandt)</strong>
-                  <p class="text-slate-400 text-[11px]">Warme Erdtöne, goldenes Dunkel, tiefer seelischer Blick.</p>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <div class="flex justify-between pt-4">
-            <button type="button" onclick="goToStep(2)" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs md:text-sm flex items-center gap-2 transition">
-              <i class="fa-solid fa-arrow-left"></i> Zurück zu Teil B
-            </button>
-            <button type="button" onclick="generateProfileAndGoToResult()" class="px-7 py-3 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:brightness-110 text-slate-950 font-bold text-xs md:text-sm flex items-center gap-2.5 shadow-xl transition transform active:scale-95">
-              <i class="fa-solid fa-crown text-base"></i> Prompts & Kunstwerke erzeugen
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========================================== -->
-      <!-- RESULT STEP: PROMPTS & DIRECT GENERATION   -->
-      <!-- ========================================== -->
-      <section id="step-4" class="step-content hidden space-y-6">
+    <form id="profileForm">
         
-        <!-- Summary Callout -->
-        <div class="bg-gradient-to-r from-amber-950/50 via-[#131D33] to-[#131D33] border border-amber-500/40 rounded-2xl p-5 md:p-6 shadow-2xl relative overflow-hidden">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-amber-500/20 pb-4">
-            <div>
-              <span class="text-xs font-semibold text-amber-400 uppercase tracking-widest flex items-center gap-1.5"><i class="fa-solid fa-sparkles"></i> Unikat-Synthese vollendet</span>
-              <h2 class="text-2xl font-cinzel font-bold text-amber-100">Deine beiden Sakral-Kunstwerke</h2>
-            </div>
+        <!-- TEIL A -->
+        <div class="section">
+            <h2>TEIL A: GEISTLICHE AUSRICHTUNG & CHARISMA</h2>
             
-            <button id="btn-generate-all" onclick="generateBothImages()" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-slate-950 font-bold text-xs md:text-sm shadow-xl transition transform hover:scale-[1.02] active:scale-95">
-              <i class="fa-solid fa-wand-magic-sparkles"></i>
-              <span>Jetzt beide Bilder generieren</span>
-            </button>
-          </div>
+            <div class="question">
+                <label>1. Grundhaltung deines Dienstes:</label>
+                <input type="text" id="q1" placeholder="z. B. Aktiv, Kontemplativ, Lehrend, Pionier...">
+            </div>
 
-          <p class="text-xs md:text-sm text-slate-300 mt-3 leading-relaxed">
-            Deine Antworten wurden in <strong>zwei hochpräzise englische Ikonografie-Prompts</strong> übersetzt. Du kannst die Bilder direkt hier erzeugen lassen oder die Prompts mit einem Klick in Gemini oder ChatGPT kopieren.
-          </p>
+            <div class="question">
+                <label>2. Deine geistliche Heimat (Spiritualität):</label>
+                <input type="text" id="q2" placeholder="z. B. Regnum Christi, Franziskanisch, Ignatianisch...">
+            </div>
+
+            <div class="question">
+                <label>3. Dein Lebensstand in der Welt:</label>
+                <input type="text" id="q3" placeholder="z. B. Laie, Familie/Ehe, Priester/Ordensstand...">
+            </div>
+
+            <div class="question">
+                <label>4. Wundertaten & charismatische Zeichen:</label>
+                <input type="text" id="q4" placeholder="z. B. Heilung, Friedensstiftung, prophetisches Wort...">
+            </div>
+
+            <div class="question">
+                <label>5. Deine größte persönliche Schwäche (die verwandelt wird):</label>
+                <input type="text" id="q5" placeholder="z. B. Ungeduld, Stolz, Menschenfurcht...">
+            </div>
+
+            <div class="question">
+                <label>6. Wähle ZWEI Haupttugenden:</label>
+                <span class="hint">Bitte kreuze genau 2 an.</span>
+                <div class="checkbox-group" id="q6-group">
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Heroischer Mut / Tapferkeit"> Heroischer Mut / Tapferkeit</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Sanftmütige Barmherzigkeit"> Sanftmütige Barmherzigkeit</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Lautere Reinheit des Herzens"> Lautere Reinheit des Herzens</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Brennender apostolischer Eifer"> Brennender apostolischer Eifer</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Demut & Freude im Verborgenen"> Demut & Freude im Verborgenen</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Unerschütterliches Gottvertrauen"> Unerschütterliches Gottvertrauen</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Kluge Unterscheidungsgabe"> Kluge Unterscheidungsgabe</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Geistliche Freude & Humor"> Geistliche Freude & Humor</label>
+                </div>
+            </div>
         </div>
 
-        <!-- 2 Columns: Artworks & Prompts -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          
-          <!-- ARTWORK 1: STAINED GLASS -->
-          <div class="bg-[#111A2E]/90 border border-slate-800 rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between">
-            <div>
-              <!-- Header -->
-              <div class="px-4 py-3.5 border-b border-slate-800 bg-[#0C1220] flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                  <span class="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-400/30 text-blue-300 flex items-center justify-center text-sm">
-                    <i class="fa-solid fa-church"></i>
-                  </span>
-                  <div>
-                    <h3 class="font-cinzel font-bold text-sm md:text-base text-slate-100">1. Gotisches Kirchenfenster</h3>
-                    <span class="text-[11px] text-blue-300/80">Monumentales Kathedralglas (Vitrail)</span>
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-1.5">
-                  <button onclick="copyPrompt('prompt1-text')" class="px-2.5 py-1 text-xs rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 flex items-center gap-1 transition">
-                    <i class="fa-regular fa-copy"></i> Kopieren
-                  </button>
-                  <button onclick="generateSingleImage(1)" id="btn-generate-1" class="px-2.5 py-1 text-xs rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 font-semibold flex items-center gap-1 transition">
-                    <i class="fa-solid fa-play"></i> Erstellen
-                  </button>
-                </div>
-              </div>
-
-              <!-- Image Viewport -->
-              <div class="relative bg-slate-950 aspect-[3/4] flex items-center justify-center p-3 overflow-hidden group">
-                <!-- Loading Overlay -->
-                <div id="loading-1" class="hidden absolute inset-0 bg-slate-950/85 backdrop-blur-sm z-20 flex flex-col items-center justify-center text-center p-4">
-                  <div class="w-12 h-12 border-4 border-amber-500/30 border-t-amber-400 rounded-full animate-spin mb-3"></div>
-                  <p class="font-cinzel text-xs md:text-sm text-amber-200">Gotisches Kirchenfenster wird gewirkt...</p>
-                  <p class="text-[11px] text-slate-400 mt-1">Lichtstrahlen & Bleiruten werden berechnet</p>
-                </div>
-
-                <!-- Placeholder -->
-                <div id="placeholder-1" class="text-center p-6 text-slate-500">
-                  <i class="fa-solid fa-image text-4xl mb-2 text-slate-700"></i>
-                  <p class="text-xs text-slate-400 max-w-xs mx-auto">Klicke auf <strong>„Erstellen“</strong>, um dein Kirchenfenster zu visualisieren.</p>
-                </div>
-
-                <!-- Generated Image -->
-                <img id="img-result-1" src="" alt="Gotisches Kirchenfenster" class="hidden w-full h-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-105" onerror="handleImageError(1)">
+        <!-- TEIL B -->
+        <div class="section">
+            <h2>TEIL B: ERSCHEINUNG & FARBEN</h2>
+            
+            <div class="question">
+                <label>7. Physische Gestalt:</label>
                 
-                <!-- Overlay Actions -->
-                <div id="img-actions-1" class="hidden absolute bottom-3 right-3 z-10 flex gap-2">
-                  <button onclick="openModal(1)" class="p-2 rounded-lg bg-slate-900/80 hover:bg-slate-800 text-white border border-slate-600 shadow" title="Großansicht">
-                    <i class="fa-solid fa-expand text-xs"></i>
-                  </button>
-                  <a id="download-link-1" href="#" download="Heiliger_Kirchenfenster.png" class="p-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold shadow" title="Herunterladen">
-                    <i class="fa-solid fa-download text-xs"></i>
-                  </a>
+                <div class="gender-buttons">
+                    <div class="gender-btn" onclick="selectGender('Männlich', this)">Männlich</div>
+                    <div class="gender-btn" onclick="selectGender('Weiblich', this)">Weiblich</div>
+                    <div class="gender-btn" onclick="selectGender('Anderes', this)">Anderes</div>
                 </div>
-              </div>
+                <input type="hidden" id="q7-gender" value="">
+                <input type="text" id="q7-gender-other" placeholder="Geschlecht spezifizieren..." style="display:none; margin-bottom: 10px;">
+
+                <input type="text" id="q7-pheno" placeholder="Phänotyp (z. B. mediterran, nordisch, Latina...)">
+                <input type="text" id="q7-age" placeholder="Altersanmutung (z. B. ca. 30 Jahre, weise...)">
+                <input type="text" id="q7-build" placeholder="Statur / Größe (z. B. groß, zierlich...)">
+                <input type="text" id="q7-features" placeholder="Haare, Augen & Merkmale (z. B. Vollbart, Brille...)">
             </div>
 
-            <!-- Prompt Box -->
-            <div class="p-4 border-t border-slate-800 bg-[#0C1220]/70">
-              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">Englischer Imagen 3 / Gemini Prompt:</span>
-              <p id="prompt1-text" class="text-xs font-mono text-slate-300 leading-relaxed max-h-32 overflow-y-auto p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 select-all"></p>
-              <div class="mt-2.5 flex items-center justify-between text-[11px] text-slate-400">
-                <span>Stil: Translucent Vitrail & Black Came</span>
-                <button onclick="copyPrompt('prompt1-text')" class="text-amber-400 hover:underline flex items-center gap-1">
-                  <i class="fa-regular fa-copy"></i> Prompt kopieren
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- ARTWORK 2: OIL PAINTING -->
-          <div class="bg-[#111A2E]/90 border border-slate-800 rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between">
-            <div>
-              <!-- Header -->
-              <div class="px-4 py-3.5 border-b border-slate-800 bg-[#0C1220] flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                  <span class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-400/30 text-amber-300 flex items-center justify-center text-sm">
-                    <i class="fa-solid fa-brush"></i>
-                  </span>
-                  <div>
-                    <h3 class="font-cinzel font-bold text-sm md:text-base text-slate-100">2. Meisterwerk der Sakralkunst</h3>
-                    <span id="selected-style-label" class="text-[11px] text-amber-300/80">Klassisches Meisterwerk</span>
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-1.5">
-                  <button onclick="copyPrompt('prompt2-text')" class="px-2.5 py-1 text-xs rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 flex items-center gap-1 transition">
-                    <i class="fa-regular fa-copy"></i> Kopieren
-                  </button>
-                  <button onclick="generateSingleImage(2)" id="btn-generate-2" class="px-2.5 py-1 text-xs rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 font-semibold flex items-center gap-1 transition">
-                    <i class="fa-solid fa-play"></i> Erstellen
-                  </button>
-                </div>
-              </div>
-
-              <!-- Image Viewport -->
-              <div class="relative bg-slate-950 aspect-[3/4] flex items-center justify-center p-3 overflow-hidden group">
-                <!-- Loading Overlay -->
-                <div id="loading-2" class="hidden absolute inset-0 bg-slate-950/85 backdrop-blur-sm z-20 flex flex-col items-center justify-center text-center p-4">
-                  <div class="w-12 h-12 border-4 border-amber-500/30 border-t-amber-400 rounded-full animate-spin mb-3"></div>
-                  <p class="font-cinzel text-xs md:text-sm text-amber-200">Sakrales Ölgemälde wird erschaffen...</p>
-                  <p class="text-[11px] text-slate-400 mt-1">Öllasur, Chiaroscuro & Farbpigmente werden gemischt</p>
-                </div>
-
-                <!-- Placeholder -->
-                <div id="placeholder-2" class="text-center p-6 text-slate-500">
-                  <i class="fa-solid fa-palette text-4xl mb-2 text-slate-700"></i>
-                  <p class="text-xs text-slate-400 max-w-xs mx-auto">Klicke auf <strong>„Erstellen“</strong>, um dein Ölgemälde zu visualisieren.</p>
-                </div>
-
-                <!-- Generated Image -->
-                <img id="img-result-2" src="" alt="Sakrales Ölgemälde" class="hidden w-full h-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-105" onerror="handleImageError(2)">
-                
-                <!-- Overlay Actions -->
-                <div id="img-actions-2" class="hidden absolute bottom-3 right-3 z-10 flex gap-2">
-                  <button onclick="openModal(2)" class="p-2 rounded-lg bg-slate-900/80 hover:bg-slate-800 text-white border border-slate-600 shadow" title="Großansicht">
-                    <i class="fa-solid fa-expand text-xs"></i>
-                  </button>
-                  <a id="download-link-2" href="#" download="Heiliger_Oelgemaelde.png" class="p-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold shadow" title="Herunterladen">
-                    <i class="fa-solid fa-download text-xs"></i>
-                  </a>
-                </div>
-              </div>
+            <div class="question">
+                <label>8a. Art der Kleidung:</label>
+                <input type="text" id="q8a" placeholder="z. B. Liturgisches Gewand, Moderner Anzug, Outdoor...">
             </div>
 
-            <!-- Prompt Box -->
-            <div class="p-4 border-t border-slate-800 bg-[#0C1220]/70">
-              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">Englischer Imagen 3 / Gemini Prompt:</span>
-              <p id="prompt2-text" class="text-xs font-mono text-slate-300 leading-relaxed max-h-32 overflow-y-auto p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 select-all"></p>
-              <div class="mt-2.5 flex items-center justify-between text-[11px] text-slate-400">
-                <span>Stil: Feine Öllasur auf Holztafel</span>
-                <button onclick="copyPrompt('prompt2-text')" class="text-amber-400 hover:underline flex items-center gap-1">
-                  <i class="fa-regular fa-copy"></i> Prompt kopieren
-                </button>
-              </div>
+            <div class="question">
+                <label>8b. Farben des Gewandes (max. 2):</label>
+                <div class="checkbox-group" id="q8b-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="q8b" value="Dunkelblau"> 
+                        <div>Dunkelblau <span class="color-meaning">Göttliche Wahrheit, Treue, Himmel</span></div>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="q8b" value="Rubinrot">
+                        <div>Rubinrot <span class="color-meaning">Brennende Liebe, Opferbereitschaft, Heiliger Geist</span></div>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="q8b" value="Smaragdgrün">
+                        <div>Smaragdgrün <span class="color-meaning">Hoffnung, neues Leben, Wachstum</span></div>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="q8b" value="Reinweiß">
+                        <div>Reinweiß <span class="color-meaning">Reinheit, Auferstehungsfreude, Licht</span></div>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="q8b" value="Erdbraun / Ocker">
+                        <div>Erdbraun <span class="color-meaning">Demut, Schlichtheit, Bodenständigkeit</span></div>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="q8b" value="Königspurpur / Violett">
+                        <div>Violett <span class="color-meaning">Buße, königliche Würde Christi, Reue</span></div>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="q8b" value="Gold / Safrangelb">
+                        <div>Gold <span class="color-meaning">Glanz der Gnade, göttliche Weisheit</span></div>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="q8b" value="Schwarz">
+                        <div>Schwarz <span class="color-meaning">Weltabgewandtheit, Ernsthaftigkeit, Radikalität</span></div>
+                    </label>
+                </div>
             </div>
-          </div>
 
+            <div class="question">
+                <label>9. Heiligenschein (Nimbus):</label>
+                <input type="text" id="q9" placeholder="z. B. Goldener Rundnimbus, zarter Lichtkranz...">
+            </div>
         </div>
 
-        <!-- Workshop Sharing & Instructions -->
-        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <button type="button" onclick="goToStep(3)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center gap-2 transition">
-            <i class="fa-solid fa-arrow-left"></i> Antworten bearbeiten
-          </button>
+        <!-- TEIL C -->
+        <div class="section">
+            <h2>TEIL C: ATTRIBUTE & SYMBOLIK</h2>
+            
+            <div class="question">
+                <label>10. Rechte Hand (Handlung, Gabe, Wirken):</label>
+                <input type="text" id="q10" placeholder="z. B. Hält eine Monstranz, Smartphone, Schwert...">
+            </div>
 
-          <div class="text-center sm:text-right">
-            <p class="text-xs text-amber-300 font-medium">Hinweis für Workshop-Leiter:</p>
-            <p class="text-[11px] text-slate-400">Teilnehmer können ihre generierten Bilder direkt speichern oder die Prompts in ihr privates ChatGPT / Gemini kopieren.</p>
-          </div>
+            <div class="question">
+                <label>11. Linke Hand (Herzseite, Halt, Schutz):</label>
+                <input type="text" id="q11" placeholder="z. B. Hält einen Rosenkranz, Kruzifix, Lilien...">
+            </div>
+
+            <div class="question">
+                <label>12. Brust-Emblem / Spezieller Schmuck:</label>
+                <input type="text" id="q12" placeholder="z. B. Beichtstola, Flammendes Herz, Kompass...">
+            </div>
+
+            <div class="question">
+                <label>13. Zu Füßen der Gestalt (Fundament / Hobbys):</label>
+                <input type="text" id="q13" placeholder="z. B. Kisten mit Brettspielen, Kochtopf, Kamera...">
+            </div>
+
+            <div class="question">
+                <label>14. Hintergrund (Landschaft / Kulisse):</label>
+                <input type="text" id="q14" placeholder="z. B. Boot mit Fischern am Strand, Großstadt...">
+            </div>
+
+            <div class="question">
+                <label>15. Dein Leitwort / Motto (Bibelvers etc.):</label>
+                <input type="text" id="q15" placeholder="z. B. Duc in Altum!">
+            </div>
+
+            <div class="question">
+                <label>16. Bevorzugter Malstil für das Kunstwerk:</label>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="q16" value="Italienische Renaissance (z. B. Raffael)"> Italienische Renaissance (z. B. Raffael) - Harmonisch, klassisch</label>
+                    <label class="radio-item"><input type="radio" name="q16" value="Niederländische Meister (z. B. Jan van Eyck)"> Niederländische Meister (z. B. Jan van Eyck) - Detailreich, leuchtend</label>
+                    <label class="radio-item"><input type="radio" name="q16" value="Barock / Chiaroscuro (z. B. Caravaggio)"> Barock / Chiaroscuro (z. B. Caravaggio) - Dramatisches Licht</label>
+                    <label class="radio-item"><input type="radio" name="q16" value="Manierismus (z. B. El Greco)"> Manierismus (z. B. El Greco) - Spirituelle Überlänge</label>
+                    <label class="radio-item"><input type="radio" name="q16" value="Psychologischer Barock (Rembrandt)"> Psychologischer Barock (Rembrandt) - Warme Erdtöne, intim</label>
+                </div>
+
+                <div class="image-preview-container">
+                    <span style="font-size: 0.9em; color: #666; display: block; margin-bottom: 10px;">Malstile Übersicht:</span>
+                    <img id="styleGuideImage" src="malstile_beispiel.jpg" alt="Beispiel der Malstile" onerror="this.style.display='none'; document.getElementById('styleGuideFallback').style.display='block';">
+                    <div id="styleGuideFallback" style="display:none; color: #999; font-size: 0.85em;">
+                        Bild 'malstile_beispiel.jpg' nicht gefunden. Lade es im GitHub-Repository hoch, damit es hier erscheint.
+                        <br><br>
+                        <input type="file" id="localStyleGuide" accept="image/*" onchange="previewLocalImage(event)" style="font-size: 14px;">
+                    </div>
+                </div>
+            </div>
         </div>
 
-      </section>
-
+        <button type="button" class="btn" onclick="generatePrompts()">Prompts erstellen</button>
     </form>
-  </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-800/80 bg-[#080D18] py-4 text-center text-xs text-slate-400">
-    <p>Der einzigartige Heilige, den Gott in dir sieht • Inspiriert vom Sel. Carlo Acutis</p>
-  </footer>
+    <!-- ERGEBNIS BEREICH -->
+    <div id="results">
+        <h2>Deine maßgeschneiderten Prompts</h2>
+        <p>Kopiere diese Texte und füge sie in einen KI-Bildgenerator ein.</p>
 
-  <!-- Image Modal for Fullscreen Preview -->
-  <div id="image-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <button onclick="closeModal()" class="absolute top-4 right-4 p-3 rounded-full bg-slate-800/80 hover:bg-slate-700 text-white z-50 transition">
-      <i class="fa-solid fa-xmark text-lg"></i>
-    </button>
-    <div class="relative max-w-4xl max-h-[90vh] flex flex-col items-center justify-center">
-      <img id="modal-img" src="" alt="Großansicht" class="max-h-[80vh] w-auto object-contain rounded-lg shadow-2xl border border-amber-500/30">
-      <div class="mt-4 flex gap-4">
-        <a id="modal-download" href="#" download="Heiligenbild.png" class="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs md:text-sm flex items-center gap-2">
-          <i class="fa-solid fa-download"></i> Bild speichern
-        </a>
-        <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs md:text-sm">
-          Schließen
-        </button>
-      </div>
+        <div class="flex-buttons">
+            <a href="https://gemini.google.com/" target="_blank" class="btn btn-secondary">In Gemini öffnen (Kostenlos)</a>
+            <a href="https://chatgpt.com/" target="_blank" class="btn btn-outline">In ChatGPT öffnen (DALL-E)</a>
+        </div>
+
+        <h3>Kunstwerk 1: Archaisches Kirchenfenster (Mittelalter)</h3>
+        <button class="btn btn-secondary" style="width: auto; margin-bottom: 10px;" onclick="copyPrompt('prompt1Text')">Kopiere diesen Prompt 📋</button>
+        <div id="prompt1Text" class="prompt-box"></div>
+
+        <h3>Kunstwerk 2: Sakrales Ölgemälde (Meisterwerk)</h3>
+        <button class="btn btn-secondary" style="width: auto; margin-bottom: 10px;" onclick="copyPrompt('prompt2Text')">Kopiere diesen Prompt 📋</button>
+        <div id="prompt2Text" class="prompt-box"></div>
     </div>
-  </div>
+</div>
 
-  <!-- Toast Notification Box -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-amber-500 text-slate-950 px-4 py-2.5 rounded-xl font-semibold text-xs shadow-2xl flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-    <i class="fa-solid fa-circle-check text-sm"></i>
-    <span id="toast-message">Prompt kopiert!</span>
-  </div>
-
-  <!-- JavaScript Logic -->
-  <script>
-    let currentStep = 1;
-    let cachedPrompt1 = "";
-    let cachedPrompt2 = "";
-
-    function handleVirtueLimit(element) {
-      const checked = document.querySelectorAll('input[name="q6_virtue"]:checked');
-      if (checked.length > 2) {
-        element.checked = false;
-        showToast("Maximal 2 Tugenden wählbar!", true);
-      }
-      updateCounts();
-      saveProgress();
-    }
-
-    function handleColorLimit(element) {
-      const checked = document.querySelectorAll('input[name="q8b_color"]:checked');
-      if (checked.length > 2) {
-        element.checked = false;
-        showToast("Maximal 2 Gewandfarben wählbar!", true);
-      }
-      updateCounts();
-      saveProgress();
-    }
-
-    function updateCounts() {
-      const virtueCount = document.querySelectorAll('input[name="q6_virtue"]:checked').length;
-      document.getElementById('q6-count').innerText = `${virtueCount} / 2 gewählt`;
-
-      const colorCount = document.querySelectorAll('input[name="q8b_color"]:checked').length;
-      document.getElementById('q8b-count').innerText = `${colorCount} / 2 gewählt`;
-    }
-
-    function goToStep(step) {
-      currentStep = step;
-      document.querySelectorAll('.step-content').forEach(s => s.classList.add('hidden'));
-      document.getElementById(`step-${step}`).classList.remove('hidden');
-
-      for (let i = 1; i <= 4; i++) {
-        const btn = document.getElementById(`step-btn-${i}`);
-        if (i === step) {
-          btn.className = "step-btn flex items-center gap-1.5 font-bold text-amber-400 border-b-2 border-amber-400 pb-1";
-          btn.querySelector('span:first-child').className = "w-5 h-5 rounded-full bg-amber-400 text-slate-900 font-bold flex items-center justify-center text-[10px]";
-        } else if (i < step) {
-          btn.className = "step-btn flex items-center gap-1.5 font-medium text-amber-200/70 border-b-2 border-transparent pb-1";
-          btn.querySelector('span:first-child').className = "w-5 h-5 rounded-full bg-amber-700/60 text-amber-200 font-bold flex items-center justify-center text-[10px]";
-        } else {
-          btn.className = "step-btn flex items-center gap-1.5 font-medium text-slate-400 border-b-2 border-transparent pb-1";
-          btn.querySelector('span:first-child').className = "w-5 h-5 rounded-full bg-slate-800 text-slate-400 font-bold flex items-center justify-center text-[10px]";
-        }
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function showToast(text, isAlert = false) {
-      const toast = document.getElementById('toast');
-      const msg = document.getElementById('toast-message');
-      msg.innerText = text;
-      toast.className = `fixed bottom-6 right-6 z-50 ${isAlert ? 'bg-rose-500 text-white' : 'bg-amber-400 text-slate-950'} px-4 py-2.5 rounded-xl font-semibold text-xs shadow-2xl flex items-center gap-2 transform translate-y-0 opacity-100 transition-all duration-300 pointer-events-none`;
-      setTimeout(() => {
-        toast.className = 'fixed bottom-6 right-6 z-50 bg-amber-500 text-slate-950 px-4 py-2.5 rounded-xl font-semibold text-xs shadow-2xl flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none';
-      }, 3000);
-    }
-
-    function copyPrompt(elementId) {
-      const text = document.getElementById(elementId).innerText;
-      if (!text) return;
-
-      const tempTextArea = document.createElement("textarea");
-      tempTextArea.value = text;
-      document.body.appendChild(tempTextArea);
-      tempTextArea.select();
-      try {
-        document.execCommand('copy');
-        showToast("Prompt in die Zwischenablage kopiert!");
-      } catch (err) {
-        showToast("Kopieren fehlgeschlagen", true);
-      }
-      document.body.removeChild(tempTextArea);
-    }
-
-    function getFormValues() {
-      const getVal = (name, otherRadioId, otherTextId) => {
-        const checked = document.querySelector(`input[name="${name}"]:checked`);
-        if (!checked) return "";
-        if (checked.value === 'other') {
-          return document.getElementById(otherTextId).value.trim();
-        }
-        return checked.value;
-      };
-
-      const getMultiple = (name, otherCheckId, otherTextId) => {
-        const checkedBoxes = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`));
-        const items = [];
-        checkedBoxes.forEach(cb => {
-          if (cb.value === 'other') {
-            const txt = document.getElementById(otherTextId).value.trim();
-            if (txt) items.push(txt);
-          } else {
-            items.push(cb.value);
-          }
+<script>
+    // Logik für Checkbox-Limits
+    function setupCheckboxLimits(groupName, limit) {
+        const checkboxes = document.querySelectorAll(`input[name="${groupName}"]`);
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                const checkedCount = document.querySelectorAll(`input[name="${groupName}"]:checked`).length;
+                if (checkedCount >= limit) {
+                    checkboxes.forEach(box => {
+                        if (!box.checked) box.disabled = true;
+                    });
+                } else {
+                    checkboxes.forEach(box => box.disabled = false);
+                }
+            });
         });
-        return items.join(', ');
-      };
-
-      return {
-        posture: getVal('q1_posture', 'q1_other_radio', 'q1_other_text'),
-        spirituality: getVal('q2_spirituality', 'q2_other_radio', 'q2_other_text'),
-        state: getVal('q3_state', 'q3_other_radio', 'q3_other_text'),
-        miracles: getVal('q4_miracles', 'q4_other_radio', 'q4_other_text'),
-        weakness: getVal('q5_weakness', 'q5_other_radio', 'q5_other_text'),
-        virtues: getMultiple('q6_virtue', 'q6_other_check', 'q6_other_text'),
-        gender: document.getElementById('q7_gender').value.trim(),
-        ethnicity: document.getElementById('q7_ethnicity').value.trim(),
-        age: document.getElementById('q7_age').value.trim(),
-        height: document.getElementById('q7_height').value.trim(),
-        features: document.getElementById('q7_features').value.trim(),
-        clothing: getVal('q8a_clothing', 'q8a_other_radio', 'q8a_other_text'),
-        colors: getMultiple('q8b_color', 'q8b_other_check', 'q8b_other_text'),
-        halo: getVal('q9_halo', 'q9_other_radio', 'q9_other_text'),
-        righthand: getVal('q10_righthand', 'q10_other_radio', 'q10_other_text'),
-        lefthand: getVal('q11_lefthand', 'q11_other_radio', 'q11_other_text'),
-        emblem: getVal('q12_emblem', 'q12_other_radio', 'q12_other_text'),
-        feet: document.getElementById('q13_feet').value.trim(),
-        background: document.getElementById('q14_background').value.trim(),
-        motto: document.getElementById('q15_motto').value.trim(),
-        style: getVal('q16_style', '', '') || "Italienische Hochrenaissance"
-      };
     }
 
-    function buildPrompts(data) {
-      const genderStr = data.gender || "Catholic saint, male";
-      const ethnicityStr = data.ethnicity ? `${data.ethnicity} heritage` : "Mediterranean / Middle-Eastern features";
-      const ageStr = data.age || "mature, approximately 38-42 years old";
-      const heightStr = data.height ? `standing tall (${data.height})` : "tall, dignified posture";
-      const featuresStr = data.features || "expressive spiritual eyes, neatly trimmed dark full beard";
-      const clothingStr = data.clothing || "traditional sacerdotal clerical robes and liturgical vestments";
-      const colorsStr = data.colors || "deep royal purple and radiant gold";
-      const haloStr = data.halo || "a fine luminous golden halo floating weightlessly above the head";
-      const rightStr = data.righthand || "holding high a brilliant golden monstrance containing the Holy Eucharist";
-      const leftStr = data.lefthand || "holding an olive-wood rosary closely against the chest near the heart";
-      const emblemStr = data.emblem || "a purple confessional priest's stole embroidered with golden crosses";
-      const feetStr = data.feet || "board games boxes, kitchen cooking cookware, and a Nikon DSLR camera";
-      const bgStr = data.background || "the shores of the Sea of Galilee with Peter's boat laden with nets full of fish";
-      const mottoStr = data.motto || "Duc in Altum!";
-      const spiritualityStr = data.spirituality ? `Charism and spiritual identity: ${data.spirituality}.` : "";
-      const virtuesStr = data.virtues ? `Embodying core virtues: ${data.virtues}.` : "";
+    setupCheckboxLimits('q6', 2);
+    setupCheckboxLimits('q8b', 2);
 
-      // PROMPT 1: Gothic Stained Glass Window
-      const prompt1 = `An authentic, museum-grade Gothic cathedral stained glass window (vitrail), brilliantly backlit by celestial radiant sunlight. Masterfully crafted black lead came outlines holding vibrant, translucent, jewel-like glass panels. Subject: Full-length standing figure of a ${genderStr}, ${ethnicityStr}, ${ageStr}, ${heightStr}, with ${featuresStr}. Garments & Vestments: Styled in ${clothingStr} with saturated glass in ${colorsStr}, bearing ${emblemStr}. Right Hand (Apostolic Mission): ${rightStr}. Left Hand (Heart & Devotion): ${leftStr}. Halo: Crowned with ${haloStr}. Ground & Base: At the feet rest symbolic glass elements depicting ${feetStr}. Architectural Setting: Set inside a soaring pointed Gothic lancet arch overlooking ${bgStr}. Base Cartouche: An illuminated antique glass banner scroll inscribed with the clear Latin motto: "${mottoStr}". Atmospheric glow, radiant sacred luminescence, profound spiritual reverence, high definition medieval vitrail.`;
-
-      // PROMPT 2: Masterpiece Oil Painting
-      const prompt2 = `A breathtaking, historic sacred devotional oil painting on dark primed wood panel, executed in the revered master style of ${data.style}. Magnificent chiaroscuro, nuanced sfumato, and rich translucent glazing. Subject: Dignified full-length sacred portrait of a ${genderStr}, ${ethnicityStr}, ${ageStr}, ${heightStr}, with ${featuresStr}. Expressive gaze radiating profound inner peace, holiness, and apostolic zeal. ${virtuesStr} Attire: Clothed in exquisite ${clothingStr} rich in ${colorsStr}, adorned with ${emblemStr}. Hands & Demeanor: Right hand prominently ${rightStr}; Left hand reverently ${leftStr}. Nimbus: Crowned by ${haloStr}. Foreground Elements: Resting gently on the floor before the figure are ${feetStr}. Landscape Background: The evocative atmospheric scene of ${bgStr}, rendered with deep perspective, poetic clouds, and golden divine light. Lower Cartouche: A classical aged parchment banderole bearing the inscribed motto: "${mottoStr}". ${spiritualityStr} Superb sacred fine art, 8k resolution, authentic museum masterpiece.`;
-
-      return { prompt1, prompt2 };
-    }
-
-    function generateProfileAndGoToResult() {
-      const data = getFormValues();
-      const { prompt1, prompt2 } = buildPrompts(data);
-
-      cachedPrompt1 = prompt1;
-      cachedPrompt2 = prompt2;
-
-      document.getElementById('prompt1-text').innerText = prompt1;
-      document.getElementById('prompt2-text').innerText = prompt2;
-
-      const styleName = data.style.split(':')[0] || "Klassisches Meisterwerk";
-      document.getElementById('selected-style-label').innerText = styleName;
-
-      saveProgress();
-      goToStep(4);
-    }
-
-    async function fetchGeminiImage(promptText) {
-      const apiKey = "";
-      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image:generateContent?key=${apiKey}`;
-
-      const payload = {
-        contents: [{
-          role: 'user',
-          parts: [{ text: promptText }]
-        }],
-        generationConfig: {
-          responseModalities: ['IMAGE'],
-          imageConfig: { aspectRatio: "3:4" }
+    // Geschlecht Auswahl
+    function selectGender(value, element) {
+        document.querySelectorAll('.gender-btn').forEach(btn => btn.classList.remove('active'));
+        element.classList.add('active');
+        document.getElementById('q7-gender').value = value;
+        
+        const otherInput = document.getElementById('q7-gender-other');
+        if (value === 'Anderes') {
+            otherInput.style.display = 'block';
+        } else {
+            otherInput.style.display = 'none';
+            otherInput.value = '';
         }
-      };
+    }
 
-      let retries = 3;
-      let delay = 1000;
-
-      for (let attempt = 0; attempt < retries; attempt++) {
-        try {
-          const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-
-          const result = await response.json();
-          const part = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
-
-          if (part && part.inlineData && part.inlineData.data) {
-            return `data:${part.inlineData.mimeType || 'image/png'};base64,${part.inlineData.data}`;
-          } else {
-            throw new Error("No image data in response");
-          }
-        } catch (err) {
-          if (attempt === retries - 1) throw err;
-          await new Promise(r => setTimeout(r, delay));
-          delay *= 2;
+    // Lokales Bild Vorschau
+    function previewLocalImage(event) {
+        const reader = new FileReader();
+        reader.onload = function(){
+            const img = document.getElementById('styleGuideImage');
+            img.src = reader.result;
+            img.style.display = 'block';
+            document.getElementById('styleGuideFallback').style.display = 'none';
         }
-      }
-    }
-
-    async function generateSingleImage(index) {
-      const promptText = index === 1 ? cachedPrompt1 : cachedPrompt2;
-      if (!promptText) {
-        showToast("Bitte erst das Profil erstellen", true);
-        return;
-      }
-
-      const loader = document.getElementById(`loading-${index}`);
-      const placeholder = document.getElementById(`placeholder-${index}`);
-      const imgEl = document.getElementById(`img-result-${index}`);
-      const actions = document.getElementById(`img-actions-${index}`);
-      const btn = document.getElementById(`btn-generate-${index}`);
-
-      loader.classList.remove('hidden');
-      btn.disabled = true;
-
-      try {
-        const imageUrl = await fetchGeminiImage(promptText);
-        imgEl.src = imageUrl;
-        imgEl.classList.remove('hidden');
-        placeholder.classList.add('hidden');
-        actions.classList.remove('hidden');
-
-        const downloadLink = document.getElementById(`download-link-${index}`);
-        downloadLink.href = imageUrl;
-
-        showToast(`Bild ${index} erfolgreich generiert!`);
-      } catch (err) {
-        console.error(err);
-        showToast(`Bild ${index} konnte nicht generiert werden. Bitte Prompt extern nutzen.`, true);
-      } finally {
-        loader.classList.add('hidden');
-        btn.disabled = false;
-      }
-    }
-
-    async function generateBothImages() {
-      const btn = document.getElementById('btn-generate-all');
-      btn.disabled = true;
-      btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Generiere Kunstwerke...`;
-
-      showToast("Generierung beider Sakralbilder gestartet...");
-
-      try {
-        await Promise.allSettled([
-          generateSingleImage(1),
-          generateSingleImage(2)
-        ]);
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> <span>Jetzt beide Bilder generieren</span>`;
-      }
-    }
-
-    function handleImageError(index) {
-      document.getElementById(`img-result-${index}`).classList.add('hidden');
-      document.getElementById(`placeholder-${index}`).classList.remove('hidden');
-      showToast(`Bildanzeige fehlgeschlagen.`, true);
-    }
-
-    function openModal(index) {
-      const img = document.getElementById(`img-result-${index}`);
-      if (!img.src) return;
-      document.getElementById('modal-img').src = img.src;
-      document.getElementById('modal-download').href = img.src;
-      document.getElementById('image-modal').classList.remove('hidden');
-    }
-
-    function closeModal() {
-      document.getElementById('image-modal').classList.add('hidden');
-    }
-
-    function loadSample(type) {
-      if (type === 'priest') {
-        setRadio('q1_posture', 'Aktiv: Mitten im Getümmel, praktisch zupackend, anpackend für andere');
-        setRadio('q2_spirituality', 'Christozentrisch (RC): Jesus im Gebet als lebendigen Freund begegnen und danach rausgehen, um andere für ihn zu begeistern (König)');
-        setRadio('q3_state', 'Geweihtes Leben / Priestertum / Ordensstand: Radikale Hingabe als sichtbares Zeichen des Himmels');
-        setRadio('q4_miracles', 'Heilung von seelischen Wunden & Befreiung von inneren Ängsten/Ketten');
-        setRadio('q5_weakness', 'Ungeduld, Jähzorn und Drang zu schnellen Ergebnissen');
-        
-        setCheckboxes('q6_virtue', ['Heroischer Mut / Tapferkeit', 'Brennender apostolischer Eifer & Missionsdrang']);
-        
-        document.getElementById('q7_gender').value = "Männlich";
-        document.getElementById('q7_ethnicity').value = "libanesisch / arabisch-weiß";
-        document.getElementById('q7_age').value = "40 Jahre alt";
-        document.getElementById('q7_height').value = "1,83 m groß";
-        document.getElementById('q7_features').value = "Vollbart (Wangen und Kinn/Candado), warme geistliche Augen";
-        
-        setRadio('q8a_clothing', 'Priestergewand / Talar & liturgische Gewänder');
-        setCheckboxes('q8b_color', ['Königspurpur / Violett (Königswürde, Buße)', 'Rubinrot (Brennende Liebe, Heiliger Geist)']);
-        setRadio('q9_halo', 'Raffael-Stil: Hauchdünner goldener Kreis, der schwerelos über dem Haupt schwebt');
-        
-        setRadio('q10_righthand', 'other');
-        document.getElementById('q10_other_text').value = "Monstranz mit der allerheiligsten Eucharistie";
-        setRadio('q11_lefthand', 'Hält einen Rosenkranz eng umschlungen');
-        setRadio('q12_emblem', 'other');
-        document.getElementById('q12_other_text').value = "Violette Beichtstola als Zeichen des barmherzigen Beichtvaters";
-        
-        document.getElementById('q13_feet').value = "Ein paar Kisten Brettspiele zusammen mit Kochtöpfen/Küchengeräten und einer Nikon DSLR-Kamera (Leidenschaften: Brettspiele, Kochen, Fotografie)";
-        document.getElementById('q14_background').value = "See Genezareth: Ein Boot voll mit Fischen und Netzen, arbeitende Fischer am Ufer, der wunderbare Fischfang („Fürchte dich nicht, ich mache dich zum Menschenfischer“), Mission in Deutschland";
-        document.getElementById('q15_motto').value = "Duc in Altum!";
-        setRadio('q16_style', 'Italienische Hochrenaissance: Harmonisch-klassischer Stil von Raffael, weiches Sfumato, goldene Ausgewogenheit');
-      } else if (type === 'missionary') {
-        setRadio('q1_posture', 'Pionier/Missionarisch: Neue Wege aufbrechen, Mut, Grenzen überschreiten');
-        setRadio('q2_spirituality', 'Ignatianisch: Kluges Unterscheiden der Geister, Gott in allen Dingen suchen und finden');
-        setRadio('q3_state', 'Digitaler Apostel / Brückenbauer: Mission in Medien, Kunst, Politik und moderner Gesellschaft');
-        setRadio('q4_miracles', 'Prophetische Eingebungen & das richtige Wort zur rechten Zeit für Suchende');
-        setRadio('q5_weakness', 'Menschenfurcht, Angst vor Ablehnung und übertriebenes Harmoniebedürfnis');
-        
-        setCheckboxes('q6_virtue', ['Lautere Reinheit des Herzens & Echtheit', 'Geistliche Freude & ansteckender Humor']);
-        
-        document.getElementById('q7_gender').value = "Weiblich";
-        document.getElementById('q7_ethnicity').value = "mitteleuropäisch";
-        document.getElementById('q7_age').value = "Mitte 20";
-        document.getElementById('q7_height').value = "1,70 m, zierlich";
-        document.getElementById('q7_features').value = "hellbraune Locken, Sommersprossen, lachende Augen";
-        
-        setRadio('q8a_clothing', 'Jeans / Casual');
-        setCheckboxes('q8b_color', ['Smaragdgrün (Hoffnung, neues Leben)', 'Reinweiß (Reinheit, Auferstehung, Licht)']);
-        setRadio('q9_halo', 'Kranz aus Olivenzweigen, Lorbeer oder Wildrosen');
-        
-        setRadio('q10_righthand', 'Hält ein modernes Smartphone / Tablet mit aufleuchtendem Kreuz');
-        setRadio('q11_lefthand', 'Hand liegt flach auf dem eigenen Herzen');
-        setRadio('q12_emblem', 'Sanfte Taube des Heiligen Geistes im Flug');
-        
-        document.getElementById('q13_feet').value = "Ein geöffneter Laptop, Skizzenbücher voller Entwürfe und zerbrochene Kopfhörer (Überwindung der Einsamkeit)";
-        document.getElementById('q14_background').value = "Skyline einer pulsierenden Großstadt im Abendrot mit warmen Lichtern";
-        document.getElementById('q15_motto').value = "Lumen Gentium!";
-        setRadio('q16_style', 'Dramatischer Barock / Chiaroscuro: Caravaggio, tiefe Schatten, packende Lichtstrahlen, emotionale Radikalität');
-      }
-
-      updateCounts();
-      saveProgress();
-      showToast("Beispieldaten geladen!");
-      goToStep(1);
-    }
-
-    function setRadio(name, value) {
-      const radios = document.getElementsByName(name);
-      for (const r of radios) {
-        if (r.value === value) {
-          r.checked = true;
-          return;
-        }
-      }
-    }
-
-    function setCheckboxes(name, values) {
-      const boxes = document.getElementsByName(name);
-      for (const b of boxes) {
-        b.checked = values.includes(b.value);
-      }
+        reader.readAsDataURL(event.target.files[0]);
     }
 
     function resetForm() {
-      document.getElementById('saintProfileForm').reset();
-      updateCounts();
-      localStorage.removeItem('saint_profile_autosave');
-      showToast("Formular zurückgesetzt");
-      goToStep(1);
+        if(confirm("Möchtest du wirklich alle Eingaben löschen?")) {
+            document.getElementById('profileForm').reset();
+            document.querySelectorAll('.gender-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('q7-gender').value = '';
+            document.getElementById('q7-gender-other').style.display = 'none';
+            document.querySelectorAll('input[type="checkbox"]').forEach(box => box.disabled = false);
+            document.getElementById('results').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
     }
 
-    function saveProgress() {
-      const data = getFormValues();
-      localStorage.setItem('saint_profile_autosave', JSON.stringify(data));
+    function getVal(id) {
+        return document.getElementById(id).value.trim() || "[Nicht angegeben]";
     }
 
-    function restoreProgress() {
-      const raw = localStorage.getItem('saint_profile_autosave');
-      if (!raw) return;
-      try {
-        const d = JSON.parse(raw);
-        if (d.posture) setRadio('q1_posture', d.posture);
-        if (d.spirituality) setRadio('q2_spirituality', d.spirituality);
-        if (d.state) setRadio('q3_state', d.state);
-        if (d.miracles) setRadio('q4_miracles', d.miracles);
-        if (d.weakness) setRadio('q5_weakness', d.weakness);
-        if (d.gender) document.getElementById('q7_gender').value = d.gender;
-        if (d.ethnicity) document.getElementById('q7_ethnicity').value = d.ethnicity;
-        if (d.age) document.getElementById('q7_age').value = d.age;
-        if (d.height) document.getElementById('q7_height').value = d.height;
-        if (d.features) document.getElementById('q7_features').value = d.features;
-        if (d.clothing) setRadio('q8a_clothing', d.clothing);
-        if (d.halo) setRadio('q9_halo', d.halo);
-        if (d.righthand) setRadio('q10_righthand', d.righthand);
-        if (d.lefthand) setRadio('q11_lefthand', d.lefthand);
-        if (d.emblem) setRadio('q12_emblem', d.emblem);
-        if (d.feet) document.getElementById('q13_feet').value = d.feet;
-        if (d.background) document.getElementById('q14_background').value = d.background;
-        if (d.motto) document.getElementById('q15_motto').value = d.motto;
-        if (d.style) setRadio('q16_style', d.style);
-        updateCounts();
-      } catch(e) {}
+    function getCheckedValues(name) {
+        const checked = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
+        return checked.length > 0 ? checked.join(' & ') : "[Nicht angegeben]";
     }
 
-    document.addEventListener('input', () => {
-      saveProgress();
-    });
+    function copyPrompt(elementId) {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Prompt erfolgreich in die Zwischenablage kopiert!\n\nDu kannst ihn nun bei Gemini oder ChatGPT einfügen.");
+        });
+    }
 
-    window.addEventListener('load', () => {
-      restoreProgress();
-      if (!localStorage.getItem('saint_profile_autosave')) {
-        loadSample('priest');
-      }
-    });
-  </script>
+    function generatePrompts() {
+        // Collect Data
+        let gender = document.getElementById('q7-gender').value;
+        if (gender === 'Anderes') gender = document.getElementById('q7-gender-other').value;
+        if (!gender) gender = "[Geschlecht nicht angegeben]";
+
+        const q7 = `${gender}, ${getVal('q7-age')}, ${getVal('q7-pheno')} descent, build: ${getVal('q7-build')}, features: ${getVal('q7-features')}`;
+        const q8a = getVal('q8a');
+        const q8b = getCheckedValues('q8b');
+        const q9 = getVal('q9');
+        const q10 = getVal('q10');
+        const q11 = getVal('q11');
+        const q12 = getVal('q12');
+        const q13 = getVal('q13');
+        const q14 = getVal('q14');
+        const q15 = getVal('q15');
+        const q16 = document.querySelector('input[name="q16"]:checked')?.value || "[Klassischer Meisterstil]";
+
+        // Charism hint based on Q2
+        const spirituality = getVal('q2').toLowerCase();
+        let charismHint = "radiant with divine peace";
+        if(spirituality.includes('regnum') || spirituality.includes('rc')) {
+            charismHint = "embodying the charism of deep friendship with Christ and bold apostolic zeal for His Kingdom";
+        } else if (spirituality.includes('franzisk')) {
+            charismHint = "radiating Franciscan joy, simplicity, and love for creation";
+        }
+
+        // Prompt 1: Weathered Romanesque-Gothic Stained Glass
+        const prompt1 = `An ancient, highly primitive and weathered 12th-to-13th century Romanesque-Gothic "pot-metal" stained glass window (vitrail) in the crudest, most rustic medieval style of early Cologne Cathedral and Sainte-Chapelle, possessing an ultra-flat, mosaic-like quality. 
+
+The entire composition is aggressively fragmented by a dense, erratic network of extremely thick, irregular black lead cames (metal came) and spidery "repair leads" that slice haphazardly through characters, objects, and borders alike, breaking the scene into tiny, uneven glass shards. The window shows heavy natural aging: it is dark, gritty, and heavily weathered with centuries of grime, browning, dark corrosion pitting, and exterior encrustations that mute the backlighting. The hand-blown, unevenly dense "pot-metal" glass is rich in historical flaws, bubbles, and warps, shifting unevenly in deep, patchy jewel tones of saturated ${q8b}, dense cobalt blues, earthy saffron yellows, and sage greens, with aged, yellowed translucent off-whites.
+
+All figures and objects are "clunky," flat, and earnest, with primitive, non-linear vertical stacking and absolutely no three-dimensional perspective. Features are heavily and coarsely hand-drawn with dark, uneven, worn vitreous glass paint (grisaille) using thick, expressive, slightly primitive brush strokes. Human figures have highly stylized, angular, and "blocky" anatomy—including disproportionately large "staring" eyes, heavy dark brows, blocky noses, and stiff, pattern-like beards and garments, completely devoid of realistic proportions, curves, or smooth gradients. 
+
+Subject: Full-length standing Catholic saint, ${q7}, ${charismHint}.
+Attire: Primitive leaded representations of ${q8a} in heavy jewel tones of ${q8b}.
+Right Hand (Apostolic Action): Coarsely stylized, actively holding or interacting with ${q10} with flat leaded outlines.
+Left Hand (Heart / Devotion): Clunky and flat, pressed against chest holding ${q11}.
+Chest Emblem: Primitive flat glass emblem displaying ${q12}.
+Halo: ${q9} rendered in thick, clunky leaded glass segments with primitive concentric rings.
+At the Feet (Ground): Objects representing ${q13} rendered heavily simplified, rustic, geometric, and barely recognizable as flat mosaic-like shards.
+Setting & Background: Towering lancet frame enclosing a crude, flat medieval backdrop of ${q14}.
+Banner Scroll: An aged, flowing parchment ribbon along the bottom with crude, irregular, hand-painted primitive medieval lettering reading: "${q15}". 
+
+The entire scene looks dark, raw, authentic, and heavily textured, as if seen in a dimly lit 800-year-old cathedral.`;
+
+        // Prompt 2: Masterpiece Oil Painting
+        const prompt2 = `A breathtaking, museum-grade historical sacred devotional oil painting on dark primed wood panel, executed in the revered master style of ${q16}. Rich dramatic chiaroscuro with velvety shadows, golden warm directional lighting, and delicate sfumato blending. 
+
+Subject: Full-length standing portrait of a dignified Catholic saint, ${q7}. 
+Expression: Deeply moving spiritual interiority, ${charismHint}, eyes filled with compassionate love and resolute holy conviction, simultaneously human and touched by the divine. 
+Attire: Masterfully rendered drapery of heavy fabric reflecting ${q8a} in hues of ${q8b}, featuring subtle golden embroidery or details of ${q12} across the breast. 
+Hands & Gestures: Right hand extended forward or held upright displaying ${q10}, manifesting their active missionary apostolate; Left hand resting firmly upon the chest holding ${q11}, anchoring their interior devotion. 
+Base / Ground: Standing barefoot or in simple footwear upon realistically rendered ground; at their feet rest symbolic objects: ${q13}. 
+Halo: ${q9} floating gracefully above the head, casting a soft sacred sheen. 
+Atmospheric Background: A sweeping majestic landscape visible behind the figure: ${q14} bathed in soft golden hour twilight. 
+Engraved Cartouche: A classical aged marble plinth or parchment banderole along the lower foreground inscribed with the motto: "${q15}". 
+
+Aesthetic: Authentic sacred masterpiece, physical oil paint texture, fine craquelure varnish, profound sacred depth, anatomical elegance, 8k resolution, authentic Catholic iconography.`;
+
+        document.getElementById('prompt1Text').innerText = prompt1;
+        document.getElementById('prompt2Text').innerText = prompt2;
+        
+        document.getElementById('results').style.display = 'block';
+        document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
 </body>
 </html>
