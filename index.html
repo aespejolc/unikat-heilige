@@ -699,6 +699,21 @@
                 charismHint = "radiating Franciscan joy, simplicity, and love for creation";
             }
 
+            // Anti-Christus / Anti-Maria Schutzschild
+            var identityGuard = "Distinct individual mortal human saint, strictly NOT Jesus Christ, NOT the Virgin Mary, absolutely avoid canonical Christological facial features, avoid biblical Jesus archetype; depict an authentic mortal human face with unique personal identity. ";
+
+            // Kleidung: Verhindert antike Toga / Biblisches Himation bei Alltags-/Arbeitskleidung
+            var clothingDetailPaint = "tailored garments reflecting " + q8a + " in hues of " + q8b;
+            var clothingDetailGlass = "Primitive leaded representations of " + q8a + " in heavy jewel tones of " + q8b;
+            
+            if (q8a.indexOf("Alltags") !== -1 || q8a.indexOf("Arbeit") !== -1) {
+                clothingDetailPaint = "modest practical everyday artisan workwear, durable linen work shirt, apron or work trousers in tones of " + q8b + " (STRICTLY NOT an ancient biblical robe, NOT a classical flowing toga, NOT a monastic habit)";
+                clothingDetailGlass = "modest practical everyday artisan work clothes in jewel tones of " + q8b + " (NOT an ancient biblical toga)";
+            } else if (q8a.indexOf("Jeans") !== -1 || q8a.indexOf("Casual") !== -1) {
+                clothingDetailPaint = "casual layered everyday clothes in tones of " + q8b + " (NOT an ancient biblical tunic or robe)";
+                clothingDetailGlass = "casual modern-traditional clothes in jewel tones of " + q8b + " (NOT an ancient biblical toga)";
+            }
+
             var stainedGlassGaze = "staring directly forward at the viewer with large, oversized, deeply expressive frontal eyes";
             var stainedGlassPose = "flat, static, frontal standing pose";
             
@@ -749,9 +764,9 @@
             var p1 = "An ancient, highly primitive and weathered 12th-to-13th century Romanesque-Gothic \"pot-metal\" stained glass window (vitrail) in the crudest, most rustic medieval style of early Cologne Cathedral and Sainte-Chapelle, possessing an ultra-flat, mosaic-like quality.\n\n" +
             "The entire composition is aggressively fragmented by a dense, erratic network of extremely thick, irregular black lead cames (metal came) and spidery \"repair leads\" that slice haphazardly through characters, objects, and borders alike, breaking the scene into tiny, uneven glass shards. The window shows heavy natural aging: it is dark, gritty, and heavily weathered with centuries of grime, browning, dark corrosion pitting, and exterior encrustations that mute the backlighting. The hand-blown, unevenly dense \"pot-metal\" glass is rich in historical flaws, bubbles, and warps, shifting unevenly in deep, patchy jewel tones of saturated " + q8b + ", dense cobalt blues, earthy saffron yellows, and sage greens, with aged, yellowed translucent off-whites.\n\n" +
             "All figures and objects are \"clunky,\" flat, and earnest, with primitive, non-linear vertical stacking and absolutely no three-dimensional perspective. Features are heavily and coarsely hand-drawn with dark, uneven, worn vitreous glass paint (grisaille) using thick, expressive, slightly primitive brush strokes. Human figures have highly stylized, angular, and \"blocky\" anatomy—including disproportionately large \"staring\" eyes, heavy dark brows, blocky noses, and stiff, pattern-like beards and garments, completely devoid of realistic proportions, curves, or smooth gradients.\n\n" +
-            "Subject: Full-length Catholic saint, " + q7 + ", " + charismHint + ". " + stainedGlassPose + ", " + stainedGlassGaze + ".\n" +
+            "Subject: Full-length Catholic saint, " + q7 + ", " + charismHint + ". " + identityGuard + stainedGlassPose + ", " + stainedGlassGaze + ".\n" +
             "Spiritual Aura & Vocation: A soul visually defined by the posture of '" + q1 + "', living their vocation as '" + q3 + "'. Their presence translates the virtues of '" + q6 + "', transformed by grace from '" + q5 + "'. The atmosphere hints at their charism of '" + q4 + "'.\n" +
-            "Attire: Primitive leaded representations of " + q8a + " in heavy jewel tones of " + q8b + ".\n" +
+            "Attire: " + clothingDetailGlass + ".\n" +
             "Right Hand (Apostolic Action): Coarsely stylized, actively holding or interacting with: " + q10 + " (with flat leaded outlines).\n" +
             "Left Hand (Heart / Devotion): Clunky and flat, pressed against chest holding: " + q11 + ".\n" +
             "Chest Emblem: Primitive flat glass emblem displaying: " + q12 + ".\n" +
@@ -762,10 +777,10 @@
             "The entire scene looks dark, raw, authentic, and heavily textured, as if seen in a dimly lit 800-year-old cathedral.";
 
             var p2 = "A breathtaking, museum-grade historical sacred devotional oil painting on dark primed wood panel, executed in the revered master style of " + q16 + ". Rich dramatic chiaroscuro with velvety shadows, golden warm directional lighting, and delicate sfumato blending.\n\n" +
-            "Subject: Full-length portrait of a dignified Catholic saint, " + q7 + ". " + paintPose + luggagePaint + "\n" +
+            "Subject: Full-length portrait of a distinct Catholic saint: " + q7 + ". " + identityGuard + paintPose + luggagePaint + "\n" +
             "Expression: Deeply moving spiritual interiority, " + charismHint + ", " + paintGaze + ".\n" +
             "Spiritual Aura & Vocation: The mood of the painting reflects a soul defined by the posture of '" + q1 + "', living as '" + q3 + "'. The painting's atmosphere radiates the virtues of '" + q6 + "', transformed by grace from '" + q5 + "', bearing signs of their charism: '" + q4 + "'.\n" +
-            "Attire: Masterfully rendered drapery of heavy fabric reflecting " + q8a + " in hues of " + q8b + ", featuring subtle golden embroidery or details of " + q12 + " across the breast.\n" +
+            "Attire: Realistically rendered " + clothingDetailPaint + ", featuring subtle embroidery or details of " + q12 + " across the breast.\n" +
             "Hands & Gestures: Right hand extended forward or held upright displaying: " + q10 + ", manifesting their active missionary apostolate; Left hand resting firmly upon the chest holding: " + q11 + ", anchoring their interior devotion.\n" +
             "Base / Ground: Standing barefoot or in simple footwear upon realistically rendered ground; at their feet rest symbolic objects: [" + q13 + "]" + q4_feet + ".\n" +
             "Halo: " + q9 + " floating gracefully above the head, casting a soft sacred sheen.\n" +
@@ -773,7 +788,6 @@
             "Engraved Cartouche: A classical aged marble plinth or parchment banderole along the lower foreground inscribed with the motto: \"" + q15 + "\".\n\n" +
             "Aesthetic: Authentic sacred masterpiece, physical oil paint texture, fine craquelure varnish, profound sacred depth, anatomical elegance, 8k resolution, authentic Catholic iconography.";
 
-            // Erstelle saubere Zusammenfassung
             var summary = "====================================================\n" +
                           "MEIN UNIKAT-PROFIL: DER HEILIGE, DEN GOTT IN MIR SIEHT\n" +
                           "====================================================\n\n" +
