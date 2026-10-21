@@ -10,8 +10,8 @@
         :root {
             --bg-color: #fdfbf7;
             --text-color: #2c3e50;
-            --primary-color: #0f254b; /* Das dunkle Sakral-Blau */
-            --accent-color: #c5a059;  /* Das edle Gold */
+            --primary-color: #0f254b;
+            --accent-color: #c5a059;
             --border-color: #cbd5e1;
             --card-bg: #ffffff;
         }
@@ -116,7 +116,6 @@
             cursor: pointer;
         }
 
-        /* Die offenen Textfelder */
         input[type="text"] {
             width: 100%;
             padding: 10px;
@@ -134,7 +133,6 @@
             border-color: var(--accent-color);
         }
 
-        /* Das Eingabefeld für "Anderes" direkt in der Zeile */
         .inline-other-text {
             flex: 1;
             margin-top: -4px !important;
@@ -237,11 +235,6 @@
             display: flex;
             gap: 15px;
             margin-bottom: 25px;
-        }
-        
-        .flex-buttons .btn {
-            flex: 1;
-            margin-bottom: 0;
         }
         
         .clearfix::after {
@@ -560,9 +553,6 @@
 </div>
 
 <script>
-    // Die komplette, robuste Logik in reinem, einfachem JavaScript
-
-    // Helfer für Checkboxen-Limits
     document.addEventListener("DOMContentLoaded", function() {
         var groups = ['q6', 'q8b'];
         groups.forEach(function(group) {
@@ -584,7 +574,6 @@
         });
     });
 
-    // Hilfsfunktionen zum Auslesen der Daten
     function getRadioValue(name, otherInputId) {
         var selected = document.querySelector('input[name="' + name + '"]:checked');
         if (!selected) return "[Not specified]";
@@ -624,10 +613,8 @@
         });
     }
 
-    // Der Haupt-Button für die Erstellung
     document.getElementById('generateBtn').addEventListener('click', function() {
         try {
-            // Sammle alle Daten
             var q1 = getRadioValue('q1', 'q1_other');
             var q2 = getRadioValue('q2', 'q2_other');
             var q3 = getRadioValue('q3', 'q3_other');
@@ -661,32 +648,77 @@
                 charismHint = "radiating Franciscan joy, simplicity, and love for creation";
             }
 
-            // Konstruiere Prompt 1 (Kirchenfenster)
+            var stainedGlassGaze = "staring directly forward at the viewer with large, oversized, deeply expressive frontal eyes";
+            var stainedGlassPose = "flat, static, frontal standing pose";
+            
+            var paintPose = "standing elegantly";
+            var paintGaze = "gazing gently";
+            var luggagePaint = "";
+            var luggageGlass = "";
+            
+            if (q1.indexOf("Aktiv") !== -1) {
+                paintPose = "caught in mid-action, striding forward with a dynamic, leaning posture as if stepping directly out of the canvas";
+                paintGaze = "gazing directly and steadily forward at the viewer with intense, present, and compassionate eye contact";
+            } else if (q1.indexOf("Kontemplativ") !== -1) {
+                paintPose = "kneeling or standing in perfectly centered, quiet stillness, the body forming a stable, grounded pyramid shape";
+                paintGaze = "gazing softly at a 45-degree angle away from the viewer, eyes deeply contemplative and slightly unfocused in quiet prayer";
+            } else if (q1.indexOf("Lehrend") !== -1 || q1.indexOf("Intellektuell") !== -1) {
+                paintPose = "standing in classical contrapposto (one weight-bearing leg), leaning slightly forward as if engaged in deep, earnest dialogue";
+                paintGaze = "eyes cast downward in humble reflection, gazing thoughtfully towards the earth or the objects in their hands";
+            } else if (q1.indexOf("Pionier") !== -1 || q1.indexOf("Missionarisch") !== -1) {
+                paintPose = "standing tall on an elevated vantage point, body turned slightly outward towards a vast horizon, ready to depart";
+                paintGaze = "chin slightly raised, gazing upward towards the heavens with visionary hope and bold reliance on divine guidance";
+                
+                if (q8a.indexOf("Jeans") !== -1 || q8a.indexOf("Casual") !== -1 || q8a.indexOf("Trekking") !== -1 || q8a.indexOf("Outdoor") !== -1 || q8a.indexOf("Sportlich") !== -1) {
+                    luggagePaint = " carrying a worn modern canvas travel backpack.";
+                    luggageGlass = " A flat mosaic of a travel backpack is visible.";
+                } else {
+                    luggagePaint = " A battered vintage leather travel suitcase rests firmly next to their feet.";
+                    luggageGlass = " A flat mosaic of a travel suitcase is visible at their feet.";
+                }
+            }
+            
+            var q3_glass_bg = "";
+            var q3_paint_bg = "";
+            if (q3.indexOf("Familie") !== -1 || q3.indexOf("Eheleben") !== -1) {
+                q3_glass_bg = " In the background mosaic, flat silhouettes of a spouse and children finding shelter under their mantle.";
+                q3_paint_bg = " In the soft background shadows, the subtle, dignified silhouettes of a spouse and children finding shelter.";
+            } else if (q3.indexOf("Digitaler") !== -1) {
+                q3_glass_bg = " The borders feature abstract black-and-white checkerboard glass tiles and binary geometric grid patterns.";
+                q3_paint_bg = " Faint, ethereal geometric grid lines and subtle black-and-white checkerboard patterns are seamlessly woven into the shadows.";
+            }
+            
+            var q4_feet = "";
+            if (q4.indexOf("Friedensstiftung") !== -1) {
+                q4_feet = " alongside a peaceful wolf resting entirely calm beside a lamb";
+            } else if (q4.indexOf("Heilung") !== -1 || q4.indexOf("Befreiung") !== -1) {
+                q4_feet = " alongside heavy iron chains lying broken and shattered";
+            }
+
             var p1 = "An ancient, highly primitive and weathered 12th-to-13th century Romanesque-Gothic \"pot-metal\" stained glass window (vitrail) in the crudest, most rustic medieval style of early Cologne Cathedral and Sainte-Chapelle, possessing an ultra-flat, mosaic-like quality.\n\n" +
             "The entire composition is aggressively fragmented by a dense, erratic network of extremely thick, irregular black lead cames (metal came) and spidery \"repair leads\" that slice haphazardly through characters, objects, and borders alike, breaking the scene into tiny, uneven glass shards. The window shows heavy natural aging: it is dark, gritty, and heavily weathered with centuries of grime, browning, dark corrosion pitting, and exterior encrustations that mute the backlighting. The hand-blown, unevenly dense \"pot-metal\" glass is rich in historical flaws, bubbles, and warps, shifting unevenly in deep, patchy jewel tones of saturated " + q8b + ", dense cobalt blues, earthy saffron yellows, and sage greens, with aged, yellowed translucent off-whites.\n\n" +
             "All figures and objects are \"clunky,\" flat, and earnest, with primitive, non-linear vertical stacking and absolutely no three-dimensional perspective. Features are heavily and coarsely hand-drawn with dark, uneven, worn vitreous glass paint (grisaille) using thick, expressive, slightly primitive brush strokes. Human figures have highly stylized, angular, and \"blocky\" anatomy—including disproportionately large \"staring\" eyes, heavy dark brows, blocky noses, and stiff, pattern-like beards and garments, completely devoid of realistic proportions, curves, or smooth gradients.\n\n" +
-            "Subject: Full-length standing Catholic saint, " + q7 + ", " + charismHint + ".\n" +
+            "Subject: Full-length Catholic saint, " + q7 + ", " + charismHint + ". " + stainedGlassPose + ", " + stainedGlassGaze + ".\n" +
             "Spiritual Aura & Vocation: A soul visually defined by the posture of '" + q1 + "', living their vocation as '" + q3 + "'. Their presence translates the virtues of '" + q6 + "', transformed by grace from '" + q5 + "'. The atmosphere hints at their charism of '" + q4 + "'.\n" +
             "Attire: Primitive leaded representations of " + q8a + " in heavy jewel tones of " + q8b + ".\n" +
             "Right Hand (Apostolic Action): Coarsely stylized, actively holding or interacting with: " + q10 + " (with flat leaded outlines).\n" +
             "Left Hand (Heart / Devotion): Clunky and flat, pressed against chest holding: " + q11 + ".\n" +
             "Chest Emblem: Primitive flat glass emblem displaying: " + q12 + ".\n" +
             "Halo: " + q9 + " rendered in thick, clunky leaded glass segments with primitive concentric rings.\n" +
-            "At the Feet (Ground): Objects representing [" + q13 + "] rendered heavily simplified, rustic, geometric, and barely recognizable as flat mosaic-like shards.\n" +
-            "Setting & Background: Towering lancet frame enclosing a crude, flat medieval backdrop of: " + q14 + ".\n" +
+            "At the Feet (Ground): Objects representing [" + q13 + "]" + q4_feet + " rendered heavily simplified, rustic, geometric, and barely recognizable as flat mosaic-like shards." + luggageGlass + "\n" +
+            "Setting & Background: Towering lancet frame enclosing a crude, flat medieval backdrop of: " + q14 + "." + q3_glass_bg + "\n" +
             "Banner Scroll: An aged, flowing parchment ribbon along the bottom with crude, irregular, hand-painted primitive medieval lettering reading: \"" + q15 + "\".\n\n" +
             "The entire scene looks dark, raw, authentic, and heavily textured, as if seen in a dimly lit 800-year-old cathedral.";
 
-            // Konstruiere Prompt 2 (Gemälde)
             var p2 = "A breathtaking, museum-grade historical sacred devotional oil painting on dark primed wood panel, executed in the revered master style of " + q16 + ". Rich dramatic chiaroscuro with velvety shadows, golden warm directional lighting, and delicate sfumato blending.\n\n" +
-            "Subject: Full-length standing portrait of a dignified Catholic saint, " + q7 + ".\n" +
-            "Expression: Deeply moving spiritual interiority, " + charismHint + ", eyes filled with compassionate love and resolute holy conviction, simultaneously human and touched by the divine.\n" +
+            "Subject: Full-length portrait of a dignified Catholic saint, " + q7 + ". " + paintPose + luggagePaint + "\n" +
+            "Expression: Deeply moving spiritual interiority, " + charismHint + ", " + paintGaze + ".\n" +
             "Spiritual Aura & Vocation: The mood of the painting reflects a soul defined by the posture of '" + q1 + "', living as '" + q3 + "'. The painting's atmosphere radiates the virtues of '" + q6 + "', transformed by grace from '" + q5 + "', bearing signs of their charism: '" + q4 + "'.\n" +
             "Attire: Masterfully rendered drapery of heavy fabric reflecting " + q8a + " in hues of " + q8b + ", featuring subtle golden embroidery or details of " + q12 + " across the breast.\n" +
             "Hands & Gestures: Right hand extended forward or held upright displaying: " + q10 + ", manifesting their active missionary apostolate; Left hand resting firmly upon the chest holding: " + q11 + ", anchoring their interior devotion.\n" +
-            "Base / Ground: Standing barefoot or in simple footwear upon realistically rendered ground; at their feet rest symbolic objects: " + q13 + ".\n" +
+            "Base / Ground: Standing barefoot or in simple footwear upon realistically rendered ground; at their feet rest symbolic objects: [" + q13 + "]" + q4_feet + ".\n" +
             "Halo: " + q9 + " floating gracefully above the head, casting a soft sacred sheen.\n" +
-            "Atmospheric Background: A sweeping majestic landscape visible behind the figure: " + q14 + " bathed in soft golden hour twilight.\n" +
+            "Atmospheric Background: A sweeping majestic landscape visible behind the figure: " + q14 + " bathed in soft golden hour twilight." + q3_paint_bg + "\n" +
             "Engraved Cartouche: A classical aged marble plinth or parchment banderole along the lower foreground inscribed with the motto: \"" + q15 + "\".\n\n" +
             "Aesthetic: Authentic sacred masterpiece, physical oil paint texture, fine craquelure varnish, profound sacred depth, anatomical elegance, 8k resolution, authentic Catholic iconography.";
 
