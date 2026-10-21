@@ -10,8 +10,8 @@
         :root {
             --bg-color: #fdfbf7;
             --text-color: #2c3e50;
-            --primary-color: #0f254b;
-            --accent-color: #c5a059;
+            --primary-color: #0f254b; /* Sakrales Dunkelblau */
+            --accent-color: #c5a059;  /* Edles Gold */
             --border-color: #cbd5e1;
             --card-bg: #ffffff;
         }
@@ -229,6 +229,20 @@
             font-size: 14px;
             line-height: 1.5;
             border-left: 4px solid var(--accent-color);
+        }
+
+        .summary-box {
+            background: #f1f5f9;
+            color: #1e293b;
+            padding: 20px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.6;
+            border-left: 4px solid var(--primary-color);
+            border: 1px solid var(--border-color);
+            border-left-width: 5px;
         }
 
         .flex-buttons {
@@ -493,8 +507,8 @@
             </div>
 
             <div class="question">
-                <label class="question-title">13. Zu Füßen der Gestalt (Überwundene Hürde / Fundament):</label>
-                <span style="font-size: 0.9em; color: #666; margin-top:-5px; display:block; margin-bottom: 5px;">(z. B. zerbrochene Ketten, ein alter Koffer, aufgeschlagene Landkarten, Brettspiele, Kochtopf...)</span>
+                <label class="question-title">13. Zu Füßen der Gestalt (Überwundene Hürde / Fundament / Hobbys):</label>
+                <span style="font-size: 0.9em; color: #666; margin-top:-5px; display:block; margin-bottom: 5px;">(z. B. zerbrochene Ketten, ein alter Koffer, aufgeschlagene Landkarten, Brettspiele, Kochtopf, Fotokamera...)</span>
                 <input type="text" id="q13" placeholder="...">
             </div>
 
@@ -529,7 +543,7 @@
             </div>
         </div>
 
-        <button type="button" class="btn" id="generateBtn">Prompts erstellen</button>
+        <button type="button" class="btn" id="generateBtn">Prompts & Zusammenfassung erstellen</button>
     </form>
 
     <!-- ERGEBNIS BEREICH -->
@@ -549,6 +563,18 @@
         <h3>Kunstwerk 2: Sakrales Ölgemälde (Meisterwerk)</h3>
         <button class="btn btn-secondary" style="width: auto; margin-bottom: 10px;" onclick="copyResultText('prompt2Text')">Kopiere diesen Prompt 📋</button>
         <div id="prompt2Text" class="prompt-box"></div>
+
+        <!-- NEUER BEREICH: PROFIL ZUSAMMENFASSUNG -->
+        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 40px 0 30px 0;">
+        <h2>Deine persönliche Profil-Zusammenfassung</h2>
+        <p>Hier sind alle deine Antworten auf einen Blick gespeichert. Du kannst diesen Text kopieren oder direkt als <code>.txt</code>-Datei auf deinem Handy/PC sichern.</p>
+        
+        <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+            <button class="btn btn-secondary" style="width: auto; margin-bottom: 0;" onclick="copyResultText('summaryText')">Zusammenfassung kopieren 📋</button>
+            <button class="btn" style="width: auto; margin-bottom: 0;" onclick="downloadSummaryFile()">Als .txt-Datei herunterladen 💾</button>
+        </div>
+        
+        <div id="summaryText" class="summary-box"></div>
     </div>
 </div>
 
@@ -576,17 +602,17 @@
 
     function getRadioValue(name, otherInputId) {
         var selected = document.querySelector('input[name="' + name + '"]:checked');
-        if (!selected) return "[Not specified]";
+        if (!selected) return "[Nicht angegeben]";
         if (selected.value === 'Anderes') {
             var otherVal = document.getElementById(otherInputId) ? document.getElementById(otherInputId).value.trim() : "";
-            return otherVal ? otherVal : "[Not specified]";
+            return otherVal ? otherVal : "[Nicht angegeben]";
         }
         return selected.value;
     }
 
     function getCheckboxValues(name, otherInputId) {
         var checked = document.querySelectorAll('input[name="' + name + '"]:checked');
-        if (checked.length === 0) return "[Not specified]";
+        if (checked.length === 0) return "[Nicht angegeben]";
         var vals = [];
         checked.forEach(function(cb) {
             if (cb.value === 'Anderes') {
@@ -596,21 +622,32 @@
                 vals.push(cb.value);
             }
         });
-        return vals.length > 0 ? vals.join(' & ') : "[Not specified]";
+        return vals.length > 0 ? vals.join(' & ') : "[Nicht angegeben]";
     }
 
     function getTextValue(id) {
         var el = document.getElementById(id);
-        return el ? (el.value.trim() || "[Not specified]") : "[Not specified]";
+        return el ? (el.value.trim() || "[Nicht angegeben]") : "[Nicht angegeben]";
     }
 
     function copyResultText(elementId) {
         var text = document.getElementById(elementId).innerText;
         navigator.clipboard.writeText(text).then(function() {
-            alert("Prompt erfolgreich kopiert!");
+            alert("Erfolgreich in die Zwischenablage kopiert!");
         }).catch(function() {
             alert("Fehler beim Kopieren. Bitte markiere den Text manuell.");
         });
+    }
+
+    function downloadSummaryFile() {
+        var text = document.getElementById('summaryText').innerText;
+        var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        var link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "Mein_Unikat_Heiligenprofil.txt";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 
     document.getElementById('generateBtn').addEventListener('click', function() {
@@ -623,9 +660,13 @@
             var q6 = getCheckboxValues('q6', 'q6_other');
             
             var gender = document.querySelector('input[name="q7_gender"]:checked');
-            gender = gender ? gender.value : "[Gender not specified]";
+            gender = gender ? gender.value : "[Geschlecht nicht angegeben]";
             
-            var q7 = gender + ", apparent age around " + getTextValue('q7_age') + ", phenotype: " + getTextValue('q7_pheno') + ", build: " + getTextValue('q7_build') + ", distinct features: " + getTextValue('q7_features');
+            var q7_pheno = getTextValue('q7_pheno');
+            var q7_age = getTextValue('q7_age');
+            var q7_build = getTextValue('q7_build');
+            var q7_features = getTextValue('q7_features');
+            var q7 = gender + ", Alter ca. " + q7_age + ", Herkunft/Typ: " + q7_pheno + ", Statur: " + q7_build + ", Merkmale: " + q7_features;
             
             var q8a = getRadioValue('q8a', 'q8a_other');
             var q8b = getCheckboxValues('q8b', 'q8b_other');
@@ -639,7 +680,7 @@
             var q15 = getTextValue('q15');
             
             var q16Element = document.querySelector('input[name="q16"]:checked');
-            var q16 = q16Element ? q16Element.value : "[Classical Master Style]";
+            var q16 = q16Element ? q16Element.value : "[Klassischer Meisterstil]";
             
             var charismHint = "radiant with divine peace";
             if (q2.toLowerCase().indexOf('regnum') !== -1 || q2.toLowerCase().indexOf('rc') !== -1) {
@@ -722,8 +763,46 @@
             "Engraved Cartouche: A classical aged marble plinth or parchment banderole along the lower foreground inscribed with the motto: \"" + q15 + "\".\n\n" +
             "Aesthetic: Authentic sacred masterpiece, physical oil paint texture, fine craquelure varnish, profound sacred depth, anatomical elegance, 8k resolution, authentic Catholic iconography.";
 
+            // Erstelle saubere Zusammenfassung
+            var summary = "====================================================\n" +
+                          "MEIN UNIKAT-PROFIL: DER HEILIGE, DEN GOTT IN MIR SIEHT\n" +
+                          "====================================================\n\n" +
+                          "TEIL A: GEISTLICHE AUSRICHTUNG & CHARISMA\n" +
+                          "----------------------------------------------------\n" +
+                          "1. Grundhaltung: " + q1 + "\n" +
+                          "2. Geistliche Heimat: " + q2 + "\n" +
+                          "3. Lebensstand: " + q3 + "\n" +
+                          "4. Wirken & Charisma: " + q4 + "\n" +
+                          "5. Zu verwandelnde Schwäche: " + q5 + "\n" +
+                          "6. Gewählte Haupttugenden: " + q6 + "\n\n" +
+                          "TEIL B: ERSCHEINUNG & FARBEN\n" +
+                          "----------------------------------------------------\n" +
+                          "7. Physische Gestalt:\n" +
+                          "   - Geschlecht: " + gender + "\n" +
+                          "   - Herkunft / Phänotyp: " + q7_pheno + "\n" +
+                          "   - Altersanmutung: " + q7_age + "\n" +
+                          "   - Statur / Größe: " + q7_build + "\n" +
+                          "   - Merkmale (Haare, Bart etc.): " + q7_features + "\n" +
+                          "8a. Kleidung: " + q8a + "\n" +
+                          "8b. Farben: " + q8b + "\n" +
+                          "9. Heiligenschein: " + q9 + "\n\n" +
+                          "TEIL C: ATTRIBUTE & SYMBOLIK\n" +
+                          "----------------------------------------------------\n" +
+                          "10. Rechte Hand (Handeln): " + q10 + "\n" +
+                          "11. Linke Hand (Herzseite/Halt): " + q11 + "\n" +
+                          "12. Brust-Emblem: " + q12 + "\n" +
+                          "13. Zu Füßen (Fundament & Hobbys): " + q13 + "\n" +
+                          "14. Hintergrund / Lebenskulisse: " + q14 + "\n" +
+                          "15. Leitwort / Motto: \"" + q15 + "\"\n" +
+                          "16. Bevorzugter Malstil: " + q16 + "\n\n" +
+                          "====================================================\n" +
+                          "\"Gott hat uns alle als Unikate geschaffen,\n" +
+                          "doch viele sterben als Fotokopien.\"\n" +
+                          "— Sel. Carlo Acutis";
+
             document.getElementById('prompt1Text').innerText = p1;
             document.getElementById('prompt2Text').innerText = p2;
+            document.getElementById('summaryText').innerText = summary;
             
             var res = document.getElementById('results');
             res.style.display = 'block';
