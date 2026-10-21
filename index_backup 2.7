@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unikat-Profil: Dein Heiligenbild</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Source+Sans+Pro:wght@400;600&display=swap');
+
+        :root {
+            --bg-color: #fdfbf7;
+            --text-color: #2c3e50;
+            --primary-color: #0f254b; /* Das dunkle Sakral-Blau */
+            --accent-color: #c5a059;  /* Das edle Gold */
+            --border-color: #cbd5e1;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(15, 37, 75, 0.08);
+            border-top: 6px solid var(--accent-color);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.4em;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .quote {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            margin-bottom: 45px;
+            padding: 30px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        label.question-title {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 1.1em;
+            color: var(--primary-color);
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 15px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .radio-item:hover, .checkbox-item:hover {
+            background: #f0f4f8;
+            border-color: var(--primary-color);
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            margin-top: 4px;
+            transform: scale(1.2);
+            accent-color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        /* Die offenen Textfelder */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 15px;
+            font-family: 'Source Sans Pro', sans-serif;
+            box-sizing: border-box;
+            margin-top: 5px;
+            background-color: #fff;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        /* Das Eingabefeld für "Anderes" direkt in der Zeile */
+        .inline-other-text {
+            flex: 1;
+            margin-top: -4px !important;
+            margin-left: 10px;
+            padding: 5px 10px !important;
+            border: none !important;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+        }
+        
+        .inline-other-text:focus {
+            border-bottom: 1px solid var(--primary-color) !important;
+        }
+
+        .color-meaning {
+            font-size: 0.85em;
+            color: #64748b;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .image-preview-container {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px dashed var(--accent-color);
+            border-radius: 8px;
+            background: white;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: #b39150;
+        }
+
+        .btn-secondary {
+            background-color: var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #17325b;
+        }
+
+        .btn-danger {
+            background-color: white;
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            font-size: 14px;
+            padding: 8px 16px;
+            width: auto;
+            margin-bottom: 30px;
+            float: right;
+        }
+
+        .btn-outline {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        #results {
+            display: none;
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .prompt-box {
+            background: var(--primary-color);
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .flex-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .flex-buttons .btn {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        @media (max-width: 600px) {
+            .flex-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container clearfix">
+    <h1>Der einzigartige Heilige, den Gott in dir sieht</h1>
+    <p class="quote">„Gott hat uns alle als Unikate geschaffen, doch viele sterben als Fotokopien."<br>— Sel. Carlo Acutis</p>
+
+    <button type="button" class="btn btn-danger" onclick="document.getElementById('profileForm').reset(); document.getElementById('results').style.display='none'; window.scrollTo(0,0);">Neustart (Löschen)</button>
+
+    <form id="profileForm" style="clear: both;" onsubmit="event.preventDefault();">
+        
+        <!-- TEIL A -->
+        <div class="section">
+            <h2>TEIL A: GEISTLICHE AUSRICHTUNG & CHARISMA</h2>
+            
+            <div class="question">
+                <label class="question-title">1. Grundhaltung deines Dienstes:</label>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="q1" value="Aktiv: Mitten im Getümmel, praktisch zupackend"> A) Aktiv: Mitten im Getümmel, praktisch zupackend, anpackend für andere.</label>
+                    <label class="radio-item"><input type="radio" name="q1" value="Kontemplativ: Ruhig, Beter, Hörender"> B) Kontemplativ: Ruhig, Beter, Hörender, Oase der Stille und des Trostes.</label>
+                    <label class="radio-item"><input type="radio" name="q1" value="Lehrend/Intellektuell: Suche nach Wahrheit"> C) Lehrend/Intellektuell: Suche nach Wahrheit, Dialog, Bildung, Glaubensvertiefung.</label>
+                    <label class="radio-item"><input type="radio" name="q1" value="Pionier/Missionarisch: Neue Wege aufbrechen"> D) Pionier/Missionarisch: Neue Wege aufbrechen, Mut, Grenzen überschreiten.</label>
+                    <label class="radio-item" style="align-items: center;">
+                        <input type="radio" name="q1" value="Anderes"> E) Anderes:
+                        <input type="text" id="q1_other" class="inline-other-text" placeholder="Bitte hier eintragen..." onfocus="this.parentElement.querySelector('input').checked = true;">
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-title">2. Deine geistliche Heimat (Spiritualität):</label>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="q2" value="Christozentrisch (RC): Jesus im Gebet als Freund begegnen und begeistern"> A) Christozentrisch (RC): Jesus im Gebet als lebendigen Freund begegnen und danach rausgehen, um andere für ihn zu begeistern (König).</label>
+                    <label class="radio-item"><input type="radio" name="q2" value="Franziskanisch: Schlichtheit, Liebe zur Schöpfung"> B) Franziskanisch: Schlichtheit, Liebe zur Schöpfung, Freude und Geschwisterlichkeit mit den Ärmsten.</label>
+                    <label class="radio-item"><input type="radio" name="q2" value="Ignatianisch: Gott in allen Dingen suchen und finden"> C) Ignatianisch: Kluges Unterscheiden der Geister, Gott in allen Dingen suchen und finden.</label>
+                    <label class="radio-item"><input type="radio" name="q2" value="Karmelitisch/Theresianisch: Der Kleine Weg, Hingabe im Verborgenen"> D) Karmelitisch/Theresianisch: Der „Kleine Weg", unbedingtes Vertrauen, Hingabe im Verborgenen.</label>
+                    <label class="radio-item"><input type="radio" name="q2" value="Dominikanisch/Paulinisch: Das Wort Gottes studieren und Wahrheit verkünden"> E) Dominikanisch/Paulinisch: Das Wort Gottes studieren, predigen und die Wahrheit verkünden.</label>
+                    <label class="radio-item"><input type="radio" name="q2" value="Benediktinisch: Ora et labora – Maß und Gastfreundschaft"> F) Benediktinisch: „Ora et labora" – Maß, Ordnung, Beständigkeit und Gastfreundschaft.</label>
+                    <label class="radio-item" style="align-items: center;">
+                        <input type="radio" name="q2" value="Anderes"> G) Anderes:
+                        <input type="text" id="q2_other" class="inline-other-text" placeholder="Bitte hier eintragen..." onfocus="this.parentElement.querySelector('input').checked = true;">
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-title">3. Dein Lebensstand in der Welt:</label>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="q3" value="Laie mitten in Beruf & Studium"> A) Laie mitten in Beruf & Studium: Heiligung der alltäglichen Arbeit und der weltlichen Kultur.</label>
+                    <label class="radio-item"><input type="radio" name="q3" value="Familie / Eheleben"> B) Familie / Eheleben: Heiligung der Beziehung, des Zuhauses und der Kindererziehung.</label>
+                    <label class="radio-item"><input type="radio" name="q3" value="Geweihtes Leben / Priestertum / Ordensstand"> C) Geweihtes Leben / Priestertum / Ordensstand: Radikale Hingabe als sichtbares Zeichen des Himmels.</label>
+                    <label class="radio-item"><input type="radio" name="q3" value="Digitaler Apostel / Brückenbauer"> D) Digitaler Apostel / Brückenbauer: Mission in Medien, Kunst, Politik und moderner Gesellschaft.</label>
+                    <label class="radio-item" style="align-items: center;">
+                        <input type="radio" name="q3" value="Anderes"> E) Anderes:
+                        <input type="text" id="q3_other" class="inline-other-text" placeholder="Bitte hier eintragen..." onfocus="this.parentElement.querySelector('input').checked = true;">
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-title">4. Wundertaten & charismatische Zeichen:</label>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="q4" value="Heilung von seelischen Wunden & Befreiung von inneren Ketten"> A) Heilung von seelischen Wunden & Befreiung von inneren Ängsten/Ketten.</label>
+                    <label class="radio-item"><input type="radio" name="q4" value="Prophetische Eingebungen & das richtige Wort zur rechten Zeit"> B) Prophetische Eingebungen & das richtige Wort zur rechten Zeit für Suchende.</label>
+                    <label class="radio-item"><input type="radio" name="q4" value="Friedensstiftung & Versöhnung zwischen verfeindeten Lagern"> C) Friedensstiftung & Versöhnung zwischen verfeindeten Lagern.</label>
+                    <label class="radio-item"><input type="radio" name="q4" value="Körperliche Krankenheilung & spürbare Gebetserhörungen"> D) Körperliche Krankenheilung & spürbare Gebetserhörungen.</label>
+                    <label class="radio-item"><input type="radio" name="q4" value="Stille Wunder der Ausdauer: Treue und Hoffnung in der Dunkelheit"> E) Stille Wunder der Ausdauer: Treue und Hoffnung dort, wo alles dunkel scheint.</label>
+                    <label class="radio-item" style="align-items: center;">
+                        <input type="radio" name="q4" value="Anderes"> F) Anderes:
+                        <input type="text" id="q4_other" class="inline-other-text" placeholder="Bitte hier eintragen..." onfocus="this.parentElement.querySelector('input').checked = true;">
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-title">5. Deine größte persönliche Schwäche (die verwandelt wird):</label>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="q5" value="Ungeduld, Jähzorn und Drang zu schnellen Ergebnissen"> A) Ungeduld, Jähzorn und Drang zu schnellen Ergebnissen.</label>
+                    <label class="radio-item"><input type="radio" name="q5" value="Menschenfurcht, Angst vor Ablehnung und Harmoniebedürfnis"> B) Menschenfurcht, Angst vor Ablehnung und übertriebenes Harmoniebedürfnis.</label>
+                    <label class="radio-item"><input type="radio" name="q5" value="Stolz, Perfektionismus und der Zwang, alles selbst kontrollieren zu wollen"> C) Stolz, Perfektionismus und der Zwang, alles selbst kontrollieren zu wollen.</label>
+                    <label class="radio-item"><input type="radio" name="q5" value="Trägheit, geistliche Bequemlichkeit und Aufschieberitis"> D) Trägheit, geistliche Bequemlichkeit und Aufschieberitis.</label>
+                    <label class="radio-item"><input type="radio" name="q5" value="Grübeln, Selbstzweifel und Mangel an Gottvertrauen"> E) Grübeln, Selbstzweifel und Mangel an Gottvertrauen.</label>
+                    <label class="radio-item" style="align-items: center;">
+                        <input type="radio" name="q5" value="Anderes"> F) Anderes:
+                        <input type="text" id="q5_other" class="inline-other-text" placeholder="Bitte hier eintragen..." onfocus="this.parentElement.querySelector('input').checked = true;">
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-title">6. Wähle ZWEI Haupttugenden, die dein Zeugnis prägen:</label>
+                <span style="font-size: 0.9em; color: #666;">Kreuze genau 2 an.</span>
+                <div class="checkbox-group" style="margin-top: 10px;">
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Heroischer Mut / Tapferkeit"> A) Heroischer Mut / Tapferkeit</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Sanftmütige Barmherzigkeit & Vergebungsbereitschaft"> B) Sanftmütige Barmherzigkeit & Vergebungsbereitschaft</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Lautere Reinheit des Herzens & Echtheit"> C) Lautere Reinheit des Herzens & Echtheit</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Brennender apostolischer Eifer & Missionsdrang"> D) Brennender apostolischer Eifer & Missionsdrang</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Demut & Freude am Dienst im Verborgenen"> E) Demut & Freude am Dienst im Verborgenen</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Unerschütterliches Gottvertrauen / Hoffnung"> F) Unerschütterliches Gottvertrauen / Hoffnung</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Kluge Unterscheidungsgabe & Weisheit"> G) Kluge Unterscheidungsgabe & Weisheit</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Treue und Geduld im Leiden"> H) Treue und Geduld im Leiden</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Großherzige Freigebigkeit & Teilen"> I) Großherzige Freigebigkeit & Teilen</label>
+                    <label class="checkbox-item"><input type="checkbox" name="q6" value="Geistliche Freude & ansteckender Humor"> J) Geistliche Freude & ansteckender Humor</label>
+                    <label class="checkbox-item" style="align-items: center;">
+                        <input type="checkbox" name="q6" value="Anderes"> K) Anderes:
+                        <input type="text" id="q6_other" class="inline-other-text" placeholder="Bitte hier eintragen..." onfocus="this.parentElement.querySelector('input').checked = true;">
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEIL B -->
+        <div class="section">
+            <h2>TEIL B: ERSCHEINUNG & FARBEN</h2>
+            
+            <div class="question">
+                <label class="question-title">7. Physische Gestalt für das Bild:</label>
+                
+                <label style="font-weight: bold; margin-bottom: 5px; display: block;">Geschlecht (Wähle 1):</label>
+                <div class="radio-group" style="margin-bottom: 15px;">
+                    <label class="radio-item"><input type="radio" name="q7_gender" value="Männlich"> Männlich</label>
+                    <label class="radio-item"><input type="radio" name="q7_gender" value="Weiblich"> Weiblich</label>
+                </div>
+
+                <label>Phänotypischer Typ / Ethnische Prägung (z. B. nordisch, Latina):</label>
+                <input type="text" id="q7_pheno" placeholder="...">
+                
+                <label style="margin-top: 15px;">Altersanmutung (z. B. jugendlich ca. 18 J. / weise):</label>
+                <input type="text" id="q7_age" placeholder="...">
+                
+                <label style="margin-top: 15px;">Statur / Größe:</label>
+                <input type="text" id="q7_build" placeholder="...">
+                
+                <label style="margin-top: 15px;">Haar-, Augenfarbe & markante Merkmale (z. B. Bart, Brille):</label>
+                <input type="text" id="q7_features" placeholder="...">
+            </div>
+
+            <div class="question">
+                <label class="question-title">8a. Art der Kleidung (Wähle 1 Option):</label>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="q8a" value="Jeans / Casual"> A) Jeans / Casual</label>
+                    <label class="radio-item"><input type="radio" name="q8a" value="Elegant / Anzug / Langes Kleid"> B) Elegant / Anzug / Langes Kleid</label>
+                    <label class="radio-item"><input type="radio" name="q8a" value="Trekking / Outdoor"> C) Trekking / Outdoor</label>
+                    <label class="radio-item"><input type="radio" name="q8a" value="Traditionell / Tracht"> D) Traditionell / Tracht</label>
+                    <label class="radio-item"><input type="radio" name="q8a" value="Modern-schick"> E) Modern-schick</label>
+                    <label class="radio-item"><input type="radio" name="q8a" value="Alltags- / Arbeitskleidung"> F) Alltags- / Arbeitskleidung</label>
+                    <label class="radio-item"><input type="radio" name="q8a" value="Sportlich"> G) Sportlich</label>
+                    <label class="radio-item"><input type="radio" name="q8a" value="Schlicht / Minimalistisch"> H) Schlicht / Minimalistisch</label>
+                    <label class="radio-item"><input type="radio" name="q8a" value="Künstlerisch / Kreativ"> I) Künstlerisch / Kreativ</label>
+                    <label class="radio-item" style="align-items: center;">
+                        <input type="radio" name="q8a" value="Anderes"> J) Anderes:
+                        <input type="text" id="q8a_other" class="inline-other-text" placeholder="Bitte hier eintragen..." onfocus="this.parentElement.querySelector('input').checked = true;">
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-title">8b. Farben des Gewandes / Kleidung (Wähle 1 oder 2):</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox" name="q8b" value="Dunkelblau"> <div>Dunkelblau <span class="color-meaning">Göttliche Wahrheit, Treue, Himmel</span></div></label>
+                    <label class="checkbox-item"><input type="checkbox" name="q8b" value="Rubinrot"> <div>Rubinrot <span class="color-meaning">Brennende Liebe, Opferbereitschaft, Heiliger Geist</span></div></label>
+                    <label class="checkbox-item"><input type="checkbox" name="q8b" value="Smaragdgrün"> <div>Smaragdgrün <span class="color-meaning">Hoffnung, neues Leben, Wachstum</span></div></label>
+                    <label class="checkbox-item"><input type="checkbox" name="q8b" value="Reinweiß"> <div>Reinweiß <span class="color-meaning">Reinheit, Auferstehungsfreude, Licht</span></div></label>
+                    <label class="checkbox-item"><input type="checkbox" name="q8b" value="Erdbraun / Ocker"> <div>Erdbraun / Ocker <span class="color-meaning">Demut, Schlichtheit, Bodenständigkeit</span></div></label>
+                    <label class="checkbox-item"><input type="checkbox" name="q8b" value="Königspurpur / Violett"> <div>Königspurpur / Violett <span class="color-meaning">Buße, königliche Würde Christi, Reue</span></div></label>
+                    <label class="checkbox-item"><input type="checkbox" name="q8b" value="Gold / Safrangelb"> <div>Gold / Safrangelb <span class="color-meaning">Glanz der Gnade, göttliche Weisheit</span></div></label>
+                    <label class="checkbox-item"><input type="checkbox" name="q8b" value="Schwarz"> <div>Schwarz <span class="color-meaning">Weltabgewandtheit, Ernsthaftigkeit, Radikalität</span></div></label>
+                    <label class="checkbox-item"><input type="checkbox" name="q8b" value="Rosenquarz / Pastell"> <div>Rosenquarz / Pastell <span class="color-meaning">Zärtlichkeit Gottes, kindliches Vertrauen</span></div></label>
+                    <label class="checkbox-item" style="align-items: center;">
+                        <input type="checkbox" name="q8b" value="Anderes"> <div>Anderes:</div>
+                        <input type="text" id="q8b_other" class="inline-other-text" placeholder="Bitte hier eintragen..." onfocus="this.parentElement.querySelector('input').checked = true;">
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-title">9. Heiligenschein (Nimbus):</label>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="q9" value="Strahlender goldener Rundnimbus mit gravierten Strahlen"> A) Strahlender goldener Rundnimbus mit gravierten Strahlen</label>
+                    <label class="radio-item"><input type="radio" name="q9" value="Kranz aus Olivenzweigen, Lorbeer oder Wildrosen"> B) Kranz aus Olivenzweigen, Lorbeer oder Wildrosen</label>
+                    <label class="radio-item"><input type="radio" name="q9" value="Zarter, warmer Lichtkranz direkt um das Haupt"> C) Zarter, warmer Lichtkranz direkt um das Haupt</label>
+                    <label class="radio-item" style="align-items: center;">
+                        <input type="radio" name="q9" value="Anderes"> D) Anderes:
+                        <input type="text" id="q9_other" class="inline-other-text" placeholder="Bitte hier eintragen..." onfocus="this.parentElement.querySelector('input').checked = true;">
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEIL C -->
+        <div class="section">
+            <h2>TEIL C: ATTRIBUTE & SYMBOLIK</h2>
+            
+            <div class="question">
+                <label class="question-title">10. Rechte Hand (Handlung, Gabe, Wirken in der Welt):</label>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="q10" value="Erhobene Hand zum Segensgestus über die Betrachter"> A) Erhobene Hand zum Segensgestus über die Betrachter</label>
+                    <label class="radio-item"><input type="radio" name="q10" value="Hält eine brennende Fackel / Laterne"> B) Hält eine brennende Fackel / Laterne (Licht in der Finsternis)</label>
+                    <label class="radio-item"><input type="radio" name="q10" value="Hält ein offenes Buch (Evangelium) oder Schreibfeder"> C) Hält ein offenes Buch (Evangelium) oder eine Schreibfeder</label>
+                    <label class="radio-item"><input type="radio" name="q10" value="Hält ein modernes Smartphone / Tablet mit aufleuchtendem Kreuz"> D) Hält ein modernes Smartphone / Tablet mit aufleuchtendem Kreuz</label>
+                    <label class="radio-item"><input type="radio" name="q10" value="Reicht einem Mitmenschen ein Stück Brot / einen Becher Wasser"> E) Reicht einem Mitmenschen ein Stück Brot / einen Becher Wasser</label>
+                    <label class="radio-item"><input type="radio" name="q10" value="Hält ein Schwert des Geistes / den Stab des Pilgers"> F) Hält ein Schwert des Geistes / den Stab des Pilgers</label>
+                    <label class="radio-item" style="align-items: center;">
+                        <input type="radio" name="q10" value="Anderes"> G) Anderes:
+                        <input type="text" id="q10_other" class="inline-other-text" placeholder="Bitte hier eintragen..." onfocus="this.parentElement.querySelector('input').checked = true;">
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-title">11. Linke Hand (Herzseite, Schutz, Bekenntnis, Halt):</label>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="q11" value="Hält ein Kruzifix fest an die Brust gedrückt"> A) Hält ein Kruzifix fest an die Brust gedrückt</label>
+                    <label class="radio-item"><input type="radio" name="q11" value="Hält einen Anker (Symbol der unverrückbaren Hoffnung)"> B) Hält einen Anker (Symbol der unverrückbaren Hoffnung)</label>
+                    <label class="radio-item"><input type="radio" name="q11" value="Hält weiße Lilien (Symbol der Reinheit und Hingabe)"> C) Hält weiße Lilien (Symbol der Reinheit und Hingabe)</label>
+                    <label class="radio-item"><input type="radio" name="q11" value="Hält einen Rosenkranz eng umschlungen"> D) Hält einen Rosenkranz eng umschlungen</label>
+                    <label class="radio-item"><input type="radio" name="q11" value="Hält ein Schild mit dem Christusmonogramm (IHS / Chi-Rho)"> E) Hält ein Schild mit dem Christusmonogramm (IHS / Chi-Rho)</label>
+                    <label class="radio-item"><input type="radio" name="q11" value="Hand liegt flach auf dem eigenen Herzen"> F) Hand liegt flach auf dem eigenen Herzen</label>
+                    <label class="radio-item" style="align-items: center;">
+                        <input type="radio" name="q11" value="Anderes"> G) Anderes:
+                        <input type="text" id="q11_other" class="inline-other-text" placeholder="Bitte hier eintragen..." onfocus="this.parentElement.querySelector('input').checked = true;">
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-title">12. Brust-Emblem / Spezieller Schmuck auf dem Gewand (Wähle 1):</label>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="q12" value="Flammendes Herz Jesu mit Dornenkrone"> A) Flammendes Herz Jesu mit Dornenkrone</label>
+                    <label class="radio-item"><input type="radio" name="q12" value="Sanfte Taube des Heiligen Geistes im Flug"> B) Sanfte Taube des Heiligen Geistes im Flug</label>
+                    <label class="radio-item"><input type="radio" name="q12" value="Christus-Königs-Krone oder Siegespalme"> C) Christus-Königs-Krone oder Siegespalme</label>
+                    <label class="radio-item"><input type="radio" name="q12" value="Ein goldener Kompass / Polarstern"> D) Ein goldener Kompass / Polarstern</label>
+                    <label class="radio-item"><input type="radio" name="q12" value="Notenschlüssel / Musiklaute"> E) Notenschlüssel / Musiklaute</label>
+                    <label class="radio-item"><input type="radio" name="q12" value="Eine silberne Brücke über Abgründe"> F) Eine silberne Brücke über Abgründe</label>
+                    <label class="radio-item"><input type="radio" name="q12" value="Weizenähren und Weintrauben"> G) Weizenähren und Weintrauben</label>
+                    <label class="radio-item"><input type="radio" name="q12" value="Ein schlichtes Holzkreuz aus Olivenholz"> H) Ein schlichtes Holzkreuz aus Olivenholz</label>
+                    <label class="radio-item"><input type="radio" name="q12" value="Offene Flamme / Feuerzunge"> I) Offene Flamme / Feuerzunge</label>
+                    <label class="radio-item"><input type="radio" name="q12" value="Ein blühender Olivenzweig"> J) Ein blühender Olivenzweig</label>
+                    <label class="radio-item" style="align-items: center;">
+                        <input type="radio" name="q12" value="Anderes"> K) Anderes:
+                        <input type="text" id="q12_other" class="inline-other-text" placeholder="Bitte hier eintragen..." onfocus="this.parentElement.querySelector('input').checked = true;">
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-title">13. Zu Füßen der Gestalt (Überwundene Hürde / Fundament):</label>
+                <span style="font-size: 0.9em; color: #666; margin-top:-5px; display:block; margin-bottom: 5px;">(z. B. zerbrochene Ketten, ein alter Koffer, aufgeschlagene Landkarten, Brettspiele, Kochtopf...)</span>
+                <input type="text" id="q13" placeholder="...">
+            </div>
+
+            <div class="question">
+                <label class="question-title">14. Der Hintergrund (Die Landschaft / Kulisse deines Lebens):</label>
+                <span style="font-size: 0.9em; color: #666; margin-top:-5px; display:block; margin-bottom: 5px;">(z. B. die Dächer einer Großstadt im Abendrot, See Genezareth, gotischer Kreuzgang...)</span>
+                <input type="text" id="q14" placeholder="...">
+            </div>
+
+            <div class="question">
+                <label class="question-title">15. Dein Leitwort / Motto (Bibelvers, Spruchband oder Zitat):</label>
+                <span style="font-size: 0.9em; color: #666; margin-top:-5px; display:block; margin-bottom: 5px;">(z. B. „Christus vincit", „Duc in Altum!", „Deus caritas est"...)</span>
+                <input type="text" id="q15" placeholder="...">
+            </div>
+
+            <div class="question">
+                <label class="question-title">16. Bevorzugter Malstil für das Kunstwerk (Wähle 1):</label>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="q16" value="Italienische Renaissance (z. B. Raffael)"> A) Italienische Renaissance (z. B. Raffael)</label>
+                    <label class="radio-item"><input type="radio" name="q16" value="Flämische & Niederländische Meister (z. B. Jan van Eyck)"> B) Flämische & Niederländische Meister (z. B. Jan van Eyck)</label>
+                    <label class="radio-item"><input type="radio" name="q16" value="Barock / Chiaroscuro (z. B. Caravaggio)"> C) Barock / Chiaroscuro (z. B. Caravaggio)</label>
+                    <label class="radio-item"><input type="radio" name="q16" value="Manierismus / Spätrenaissance (z. B. El Greco)"> D) Manierismus / Spätrenaissance (z. B. El Greco)</label>
+                    <label class="radio-item"><input type="radio" name="q16" value="Spätgotik / Frühe Altniederländer (z. B. Rogier van der Weyden)"> E) Spätgotik / Frühe Altniederländer</label>
+                    <label class="radio-item"><input type="radio" name="q16" value="Spätbarock & Rokoko (z. B. Giambattista Tiepolo)"> F) Spätbarock & Rokoko</label>
+                    <label class="radio-item"><input type="radio" name="q16" value="Psychologischer Barock / Rembrandt van Rijn"> G) Psychologischer Barock (Rembrandt)</label>
+                </div>
+
+                <div class="image-preview-container">
+                    <span style="font-size: 0.9em; color: #666; display: block; margin-bottom: 10px;">Malstile Übersicht:</span>
+                    <img id="styleGuideImage" src="malstile_beispiel.jpg" alt="Beispiel der Malstile" onerror="this.style.display='none';">
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn" id="generateBtn">Prompts erstellen</button>
+    </form>
+
+    <!-- ERGEBNIS BEREICH -->
+    <div id="results">
+        <h2>Deine maßgeschneiderten Prompts</h2>
+        <p>Kopiere diese Texte und füge sie in einen KI-Bildgenerator ein.</p>
+
+        <div class="flex-buttons">
+            <a href="https://gemini.google.com/" target="_blank" class="btn btn-secondary">In Gemini öffnen (Kostenlos)</a>
+            <a href="https://chatgpt.com/" target="_blank" class="btn btn-outline">In ChatGPT öffnen (DALL-E)</a>
+        </div>
+
+        <h3>Kunstwerk 1: Archaisches Kirchenfenster (Mittelalter)</h3>
+        <button class="btn btn-secondary" style="width: auto; margin-bottom: 10px;" onclick="copyResultText('prompt1Text')">Kopiere diesen Prompt 📋</button>
+        <div id="prompt1Text" class="prompt-box"></div>
+
+        <h3>Kunstwerk 2: Sakrales Ölgemälde (Meisterwerk)</h3>
+        <button class="btn btn-secondary" style="width: auto; margin-bottom: 10px;" onclick="copyResultText('prompt2Text')">Kopiere diesen Prompt 📋</button>
+        <div id="prompt2Text" class="prompt-box"></div>
+    </div>
+</div>
+
+<script>
+    // Die komplette, robuste Logik in reinem, einfachem JavaScript
+
+    // Helfer für Checkboxen-Limits
+    document.addEventListener("DOMContentLoaded", function() {
+        var groups = ['q6', 'q8b'];
+        groups.forEach(function(group) {
+            var checkboxes = document.querySelectorAll('input[name="' + group + '"]');
+            checkboxes.forEach(function(cb) {
+                cb.addEventListener('change', function() {
+                    var checkedCount = document.querySelectorAll('input[name="' + group + '"]:checked').length;
+                    if (checkedCount >= 2) {
+                        checkboxes.forEach(function(box) {
+                            if (!box.checked) box.disabled = true;
+                        });
+                    } else {
+                        checkboxes.forEach(function(box) {
+                            box.disabled = false;
+                        });
+                    }
+                });
+            });
+        });
+    });
+
+    // Hilfsfunktionen zum Auslesen der Daten
+    function getRadioValue(name, otherInputId) {
+        var selected = document.querySelector('input[name="' + name + '"]:checked');
+        if (!selected) return "[Not specified]";
+        if (selected.value === 'Anderes') {
+            var otherVal = document.getElementById(otherInputId) ? document.getElementById(otherInputId).value.trim() : "";
+            return otherVal ? otherVal : "[Not specified]";
+        }
+        return selected.value;
+    }
+
+    function getCheckboxValues(name, otherInputId) {
+        var checked = document.querySelectorAll('input[name="' + name + '"]:checked');
+        if (checked.length === 0) return "[Not specified]";
+        var vals = [];
+        checked.forEach(function(cb) {
+            if (cb.value === 'Anderes') {
+                var otherVal = document.getElementById(otherInputId) ? document.getElementById(otherInputId).value.trim() : "";
+                if (otherVal) vals.push(otherVal);
+            } else {
+                vals.push(cb.value);
+            }
+        });
+        return vals.length > 0 ? vals.join(' & ') : "[Not specified]";
+    }
+
+    function getTextValue(id) {
+        var el = document.getElementById(id);
+        return el ? (el.value.trim() || "[Not specified]") : "[Not specified]";
+    }
+
+    function copyResultText(elementId) {
+        var text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(function() {
+            alert("Prompt erfolgreich kopiert!");
+        }).catch(function() {
+            alert("Fehler beim Kopieren. Bitte markiere den Text manuell.");
+        });
+    }
+
+    // Der Haupt-Button für die Erstellung
+    document.getElementById('generateBtn').addEventListener('click', function() {
+        try {
+            // Sammle alle Daten
+            var q1 = getRadioValue('q1', 'q1_other');
+            var q2 = getRadioValue('q2', 'q2_other');
+            var q3 = getRadioValue('q3', 'q3_other');
+            var q4 = getRadioValue('q4', 'q4_other');
+            var q5 = getRadioValue('q5', 'q5_other');
+            var q6 = getCheckboxValues('q6', 'q6_other');
+            
+            var gender = document.querySelector('input[name="q7_gender"]:checked');
+            gender = gender ? gender.value : "[Gender not specified]";
+            
+            var q7 = gender + ", apparent age around " + getTextValue('q7_age') + ", phenotype: " + getTextValue('q7_pheno') + ", build: " + getTextValue('q7_build') + ", distinct features: " + getTextValue('q7_features');
+            
+            var q8a = getRadioValue('q8a', 'q8a_other');
+            var q8b = getCheckboxValues('q8b', 'q8b_other');
+            var q9 = getRadioValue('q9', 'q9_other');
+            var q10 = getRadioValue('q10', 'q10_other');
+            var q11 = getRadioValue('q11', 'q11_other');
+            var q12 = getRadioValue('q12', 'q12_other');
+            
+            var q13 = getTextValue('q13');
+            var q14 = getTextValue('q14');
+            var q15 = getTextValue('q15');
+            
+            var q16Element = document.querySelector('input[name="q16"]:checked');
+            var q16 = q16Element ? q16Element.value : "[Classical Master Style]";
+            
+            var charismHint = "radiant with divine peace";
+            if (q2.toLowerCase().indexOf('regnum') !== -1 || q2.toLowerCase().indexOf('rc') !== -1) {
+                charismHint = "embodying the charism of deep friendship with Christ and bold apostolic zeal for His Kingdom";
+            } else if (q2.toLowerCase().indexOf('franzisk') !== -1) {
+                charismHint = "radiating Franciscan joy, simplicity, and love for creation";
+            }
+
+            // Konstruiere Prompt 1 (Kirchenfenster)
+            var p1 = "An ancient, highly primitive and weathered 12th-to-13th century Romanesque-Gothic \"pot-metal\" stained glass window (vitrail) in the crudest, most rustic medieval style of early Cologne Cathedral and Sainte-Chapelle, possessing an ultra-flat, mosaic-like quality.\n\n" +
+            "The entire composition is aggressively fragmented by a dense, erratic network of extremely thick, irregular black lead cames (metal came) and spidery \"repair leads\" that slice haphazardly through characters, objects, and borders alike, breaking the scene into tiny, uneven glass shards. The window shows heavy natural aging: it is dark, gritty, and heavily weathered with centuries of grime, browning, dark corrosion pitting, and exterior encrustations that mute the backlighting. The hand-blown, unevenly dense \"pot-metal\" glass is rich in historical flaws, bubbles, and warps, shifting unevenly in deep, patchy jewel tones of saturated " + q8b + ", dense cobalt blues, earthy saffron yellows, and sage greens, with aged, yellowed translucent off-whites.\n\n" +
+            "All figures and objects are \"clunky,\" flat, and earnest, with primitive, non-linear vertical stacking and absolutely no three-dimensional perspective. Features are heavily and coarsely hand-drawn with dark, uneven, worn vitreous glass paint (grisaille) using thick, expressive, slightly primitive brush strokes. Human figures have highly stylized, angular, and \"blocky\" anatomy—including disproportionately large \"staring\" eyes, heavy dark brows, blocky noses, and stiff, pattern-like beards and garments, completely devoid of realistic proportions, curves, or smooth gradients.\n\n" +
+            "Subject: Full-length standing Catholic saint, " + q7 + ", " + charismHint + ".\n" +
+            "Spiritual Aura & Vocation: A soul visually defined by the posture of '" + q1 + "', living their vocation as '" + q3 + "'. Their presence translates the virtues of '" + q6 + "', transformed by grace from '" + q5 + "'. The atmosphere hints at their charism of '" + q4 + "'.\n" +
+            "Attire: Primitive leaded representations of " + q8a + " in heavy jewel tones of " + q8b + ".\n" +
+            "Right Hand (Apostolic Action): Coarsely stylized, actively holding or interacting with: " + q10 + " (with flat leaded outlines).\n" +
+            "Left Hand (Heart / Devotion): Clunky and flat, pressed against chest holding: " + q11 + ".\n" +
+            "Chest Emblem: Primitive flat glass emblem displaying: " + q12 + ".\n" +
+            "Halo: " + q9 + " rendered in thick, clunky leaded glass segments with primitive concentric rings.\n" +
+            "At the Feet (Ground): Objects representing [" + q13 + "] rendered heavily simplified, rustic, geometric, and barely recognizable as flat mosaic-like shards.\n" +
+            "Setting & Background: Towering lancet frame enclosing a crude, flat medieval backdrop of: " + q14 + ".\n" +
+            "Banner Scroll: An aged, flowing parchment ribbon along the bottom with crude, irregular, hand-painted primitive medieval lettering reading: \"" + q15 + "\".\n\n" +
+            "The entire scene looks dark, raw, authentic, and heavily textured, as if seen in a dimly lit 800-year-old cathedral.";
+
+            // Konstruiere Prompt 2 (Gemälde)
+            var p2 = "A breathtaking, museum-grade historical sacred devotional oil painting on dark primed wood panel, executed in the revered master style of " + q16 + ". Rich dramatic chiaroscuro with velvety shadows, golden warm directional lighting, and delicate sfumato blending.\n\n" +
+            "Subject: Full-length standing portrait of a dignified Catholic saint, " + q7 + ".\n" +
+            "Expression: Deeply moving spiritual interiority, " + charismHint + ", eyes filled with compassionate love and resolute holy conviction, simultaneously human and touched by the divine.\n" +
+            "Spiritual Aura & Vocation: The mood of the painting reflects a soul defined by the posture of '" + q1 + "', living as '" + q3 + "'. The painting's atmosphere radiates the virtues of '" + q6 + "', transformed by grace from '" + q5 + "', bearing signs of their charism: '" + q4 + "'.\n" +
+            "Attire: Masterfully rendered drapery of heavy fabric reflecting " + q8a + " in hues of " + q8b + ", featuring subtle golden embroidery or details of " + q12 + " across the breast.\n" +
+            "Hands & Gestures: Right hand extended forward or held upright displaying: " + q10 + ", manifesting their active missionary apostolate; Left hand resting firmly upon the chest holding: " + q11 + ", anchoring their interior devotion.\n" +
+            "Base / Ground: Standing barefoot or in simple footwear upon realistically rendered ground; at their feet rest symbolic objects: " + q13 + ".\n" +
+            "Halo: " + q9 + " floating gracefully above the head, casting a soft sacred sheen.\n" +
+            "Atmospheric Background: A sweeping majestic landscape visible behind the figure: " + q14 + " bathed in soft golden hour twilight.\n" +
+            "Engraved Cartouche: A classical aged marble plinth or parchment banderole along the lower foreground inscribed with the motto: \"" + q15 + "\".\n\n" +
+            "Aesthetic: Authentic sacred masterpiece, physical oil paint texture, fine craquelure varnish, profound sacred depth, anatomical elegance, 8k resolution, authentic Catholic iconography.";
+
+            document.getElementById('prompt1Text').innerText = p1;
+            document.getElementById('prompt2Text').innerText = p2;
+            
+            var res = document.getElementById('results');
+            res.style.display = 'block';
+            res.scrollIntoView({ behavior: 'smooth' });
+
+        } catch (error) {
+            alert("Fehler bei der Erstellung der Prompts.");
+            console.error(error);
+        }
+    });
+</script>
+
+</body>
+</html>
